@@ -5,3 +5,12 @@ install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
   - mvn test
+addons:
+  sonarcloud:
+    organization: "climatetree"
+    token:
+      secure: "NQamdAMqHKW1/9KNYL655W3kXb2SVU/PCThaD+KA0z4WVzd1oSjWbxeBqlytUvIf+YLhhlO8f+3OgBPVScbWqJAE9osQ8dxL5c9Kurb88N6Di/uTOCdo9qvJpkEFHbGaUuEetbtYMnYnJeEE7S2rYt38XC5Pc5enhTKxtUGMtJ6tkHyi2i3JjmcF6NXN/I0LeuXu+fypJx+aWOWDa53jwPIJWpmRGDu1xVFFonnVithwh9t3FgvMgA78kg+wuhlGNljseaFQNfClpqyPq8J4FLv4NBOPIUjrsoQ+TKTIHdPIhA6PVOuPR42KlHU5hwNKaHoWpFbiypMNNfCJpAbB05Do14mRvtuOPAnzHVFfSYY+zi16lIL1Dh8uDGBl32k6XVRwxx7asXysV0k1Be7Aj+KuC3blCs2QjOhe0nFtQwvtoT9PBKizLPbMgj1sOuo1KE50TkNj9HhJ9Cyry48sIo6UOzddZ8XaABBbHRHLyHCyeWNhpHGOVeXz+tlApCJhR6dhcC2075OmOrZnyA/+BpwsC108GobOAoTQU2aJyIuV6UGo5Pk+m6gj84wiTEjcu3hpEndB70sJOD+3m5rFw22EjRX0rnTKjhzP79Hq+iNK7zHijeJWrw5665WBhDK99MYdeBURw7As/sR72sfW1pGQ9dsrQQrehSRL8WhRSGs=" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
