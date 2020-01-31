@@ -1,13 +1,12 @@
 language: java
 jdk: openjdk8
-
 install:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-  - mvn test
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 addons:
   sonarcloud:
-    organization: "climatetree"
+    organization: climatetree
     token:
       secure: "K7erkz7oqjq/pah4mJuhakID7rDMffZJ9EXmiBJ7arvAw5NCt6w0hdRNp35edq8BG2NpvNdzXX3Ld+QuKK1U/T63NyoFhDDs9nYclcQtzkB5OKfFGZvpzxCDYP0zY6xBU6OQ8g6ygHYLhAdXAFRCOSklHTRy2IGZUyKFzqPJswiOyNhDq4tJo4x0JMOYX1viQisJQGSu4iB6gDTbM8olT7RWjCEISh+DOSA2ERqPPAEjyZn7a3ZazDSg/hkeLpp+kvMoeu085sKWimR19rA0TcFYQYIsQ9uO3oukhLJYoL1gKFt8pBDNuG/YApUhLGGX6UX+6bfyuEKQakwA7Rc8Jd7ETQSg7Cw0SPqSaOZe+MDmaertIm8F7DLfvumRB6gW7Nax58yk4B32kEQYRwvlTm+8TlDpfdQtm6Ov7c/NDcTTLG5vvyy/Wiq7mkqzFKO0ttUzrX89D5CtflhXRuvrFEjXEpdE0SuiKGeU7je9dmxNmlbSek7kqiXIlGn6paqsWzZyvKSLChe/uQcCljslvRlfaSYgAjW1CA1nestDQILxReH8f4RTB1oUH8GTkTVgV0+HmjZJzBiwJ9WlrFN6bU2Bjr6pfHDq4r4fbB9Mi8w0PhE6KlARfpPQAzHf4KoBF3wFwwrg+sytTN6+fkCgsYi/nU9OPTRlvCz20JTjd5o="
 
