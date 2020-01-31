@@ -1,13 +1,13 @@
-package com.climatetree.demo;
+package com.climatetree.places;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackendApplicationTests {
+class PlacesMicroserviceServerApplicationTests {
 
-  @Test
-  void contextLoads() {
-  }
+	@Test
+	void contextLoads() {
+	}
 
 }
