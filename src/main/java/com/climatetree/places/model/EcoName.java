@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="\"ECO_NAME\"")
 public class EcoName implements Serializable {
@@ -21,7 +23,8 @@ public class EcoName implements Serializable {
 	@Column(name = "eco_name")
 	private String ecoName;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ecoName")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "ecoName")
+	@JsonIgnore
 	private Set<PlaceInfo> places;
 
 	public int getEcoNameId() {

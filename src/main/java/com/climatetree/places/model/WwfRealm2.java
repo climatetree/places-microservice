@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="\"WWF_REALM2\"")
 public class WwfRealm2 implements Serializable {
@@ -22,6 +24,7 @@ public class WwfRealm2 implements Serializable {
 	private String wwfRealm2Name;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "wwfRealm2")
+	@JsonIgnore
 	private Set<PlaceInfo> places;
 
 	public int getWwfRealm2Id() {

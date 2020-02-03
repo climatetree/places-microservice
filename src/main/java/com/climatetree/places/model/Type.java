@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="\"TYPE\"")
 public class Type implements Serializable {
@@ -22,6 +24,7 @@ public class Type implements Serializable {
 	private String typeName;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
+	@JsonIgnore
 	private Set<PlaceInfo> places;
 
 	public int getTypeId() {
