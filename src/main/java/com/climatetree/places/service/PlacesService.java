@@ -2,6 +2,7 @@ package com.climatetree.places.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,8 @@ public class PlacesService {
 	PlacesRepository placesRepo;
 
 	public PlaceInfo findPlaceById(int placeId) {
-		return placesRepo.findById(placeId).get();
+		Optional<PlaceInfo> placesOp =  placesRepo.findById(placeId);
+		return placesOp.isPresent() ? placesOp.get(): null;
 	}
 	
 	public List<PlaceInfo> findAllPlaces() {
