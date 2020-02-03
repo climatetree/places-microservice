@@ -1,7 +1,14 @@
 language: java
 jdk: openjdk8
+
 install:
-- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database POSTGRESQL;' -U postgres
 
 addons:
   sonarcloud:
