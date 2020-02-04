@@ -28,7 +28,7 @@ public class PlacesController {
 	}
 	
 	@GetMapping("/places/{placeId}/similar")
-	public List<PlaceInfo> getSimilarPlaces(@PathVariable("placeId") int placeId, @RequestBody PlaceDTO place) {
+	public List<PlaceDTO> getSimilarPlaces(@PathVariable("placeId") int placeId, @RequestBody PlaceDTO place) {
 		return placesService.getSimilarPlaces(place);
 	}
 
