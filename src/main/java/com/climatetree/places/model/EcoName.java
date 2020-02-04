@@ -16,6 +16,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="\"ECO_NAME\"")
 public class EcoName implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3223489926850482766L;
+
 	@Id
 	@Column(name = "eco_name_id")
 	private int ecoNameId;
