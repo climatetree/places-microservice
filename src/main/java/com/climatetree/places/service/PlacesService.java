@@ -28,14 +28,14 @@ public class PlacesService {
 		return places;
 	}
 	
-	public List<PlaceInfo> getSimilarPlaces(PlaceDTO place) {
-		List<PlaceInfo> places = new ArrayList<>();
+	public List<PlaceDTO> getSimilarPlaces(PlaceDTO place) {
+		List<PlaceDTO> places = new ArrayList<>();
 		double pop_start = place.getPopulation() * .95;
 		double pop_end = place.getPopulation() * 1.25;
 		double popDensity_start = place.getPopulation() * .95;
 		double popDensity_end = place.getPopulation() * 1.25;
 		
-		this.placesRepo.getSimilarPlaces(pop_start, pop_end, popDensity_start, popDensity_end).forEach(p -> places.add(p));
+		this.placesRepo.getSimilarPlaces(pop_start, pop_end, popDensity_start, popDensity_end).forEach(p -> places.add(p.convertToPlaceDTO()));
 		
 		return places;
 	}

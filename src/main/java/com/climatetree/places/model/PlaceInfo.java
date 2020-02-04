@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.climatetree.places.dto.PlaceDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -171,6 +172,16 @@ public class PlaceInfo implements Serializable {
 		this.pointY = pointY;
 	}
 
+	public PlaceDTO convertToPlaceDTO() {
+		return new PlaceDTO(this.placeId, 
+							this.names.iterator().next().getName(), 
+							this.type.getTypeName(), 
+							this.population, 
+							this.carbon, 
+							this.percapcarb, 
+							this.popdensity);
+	}
+	
 	@Override
 	public String toString() {
 		return "PlaceInfo [placeId=" + placeId + ", type=" + type + ", ecoName=" + ecoName + ", wwfMhtnam=" + wwfMhtnam
