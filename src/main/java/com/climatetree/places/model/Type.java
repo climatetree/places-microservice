@@ -1,6 +1,7 @@
 package com.climatetree.places.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,6 +16,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="\"TYPE\"")
 public class Type implements Serializable {
+	
+	public Type(int typeId, String typeName, HashSet<PlaceInfo> places) {
+		this.typeId = typeId;
+		this.typeName = typeName;
+		this.places = places;
+	}
+	
+	public Type() {
+		
+	}
 
 	@Id
 	@Column(name = "type_id")
@@ -56,4 +67,16 @@ public class Type implements Serializable {
 		return "Type [typeId=" + typeId + ", typeName=" + typeName + ", places=" + places + "]";
 	}
 
+	public boolean equals(Object object) {
+		if (this == object) return true;
+		if (object == null || getClass() != object.getClass()) return false;
+		if (!super.equals(object)) return false;
+		Type type = (Type) object;
+		return typeId == type.typeId;
+	}
+
+	public int hashCode() {
+
+		return java.util.Objects.hash(super.hashCode(), typeId, typeName, places);
+	}
 }

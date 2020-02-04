@@ -1,6 +1,7 @@
 package com.climatetree.places.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,6 +16,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="\"WWF_REALM2\"")
 public class WwfRealm2 implements Serializable {
+	
+	public WwfRealm2(int wwfRealm2Id, String wwfRealm2Name, HashSet<PlaceInfo> places) {
+		this.wwfRealm2Id = wwfRealm2Id;
+		this.wwfRealm2Name = wwfRealm2Name;
+		this.places = places;
+	}
+	
+	public WwfRealm2() {
+		
+	}
 
 	@Id
 	@Column(name = "wwf_realm2_id")
@@ -57,4 +68,16 @@ public class WwfRealm2 implements Serializable {
 				+ "]";
 	}
 
+	public boolean equals(Object object) {
+		if (this == object) return true;
+		if (object == null || getClass() != object.getClass()) return false;
+		if (!super.equals(object)) return false;
+		WwfRealm2 wwfRealm2 = (WwfRealm2) object;
+		return wwfRealm2Id == wwfRealm2.wwfRealm2Id;
+	}
+
+	public int hashCode() {
+
+		return java.util.Objects.hash(super.hashCode(), wwfRealm2Id, wwfRealm2Name, places);
+	}
 }
