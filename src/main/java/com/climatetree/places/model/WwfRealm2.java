@@ -13,16 +13,21 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="\"WWF_REALM2\"")
+@Table(name = "\"WWF_REALM2\"")
 public class WwfRealm2 implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9087864223470994142L;
 
 	@Id
 	@Column(name = "wwf_realm2_id")
 	private int wwfRealm2Id;
-	
+
 	@Column(name = "wwf_realm2_name")
 	private String wwfRealm2Name;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "wwfRealm2")
 	@JsonIgnore
 	private Set<PlaceInfo> places;

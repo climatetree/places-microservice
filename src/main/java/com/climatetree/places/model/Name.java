@@ -19,15 +19,17 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "\"NAME\"")
 public class Name implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4237846797457675278L;
+
 	@Id
 	@Column(name = "name_id")
 	private int nameId;
 
 	@Column(name = "name")
 	private String name;
-
-//	@OneToMany(mappedBy = "name", fetch = FetchType.EAGER)
-//	private Set<NamePlace> namePlaces;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "\"NAME_PLACE\"", joinColumns = {

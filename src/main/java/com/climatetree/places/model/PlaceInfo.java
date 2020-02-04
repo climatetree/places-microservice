@@ -19,6 +19,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "\"PLACE_INFO\"")
 public class PlaceInfo implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7407606649493169837L;
+
 	@Id
 	@Column(name = "place_id")
 	private int placeId;
@@ -39,9 +44,6 @@ public class PlaceInfo implements Serializable {
 	@JoinColumn(name = "wwf_realm2_id")
 	private WwfRealm2 wwfRealm2;
 
-//	@OneToMany(mappedBy = "place", fetch = FetchType.EAGER)
-////	@JsonIgnore
-//	private Set<NamePlace> namePlaces;
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "places")
 	@JsonBackReference
 	private Set<Name> names;
@@ -101,11 +103,6 @@ public class PlaceInfo implements Serializable {
 	public void setWwfRealm2(WwfRealm2 wwfRealm2) {
 		this.wwfRealm2 = wwfRealm2;
 	}
-
-//	public Set<NamePlace> getNamePlaces() {
-//		return namePlaces;
-//	}
-
 
 	public double getPopulation() {
 		return population;
@@ -170,13 +167,33 @@ public class PlaceInfo implements Serializable {
 	public void setPointY(double pointY) {
 		this.pointY = pointY;
 	}
+	
+	
+
+	public PlaceInfo(int placeId, Type type, EcoName ecoName, WwfMhtnam wwfMhtnam, WwfRealm2 wwfRealm2, Set<Name> names,
+			double population, double carbon, double percapcarb, double popdensity, String hasc1, double pointX,
+			double pointY) {
+		this.placeId = placeId;
+		this.type = type;
+		this.ecoName = ecoName;
+		this.wwfMhtnam = wwfMhtnam;
+		this.wwfRealm2 = wwfRealm2;
+		this.names = names;
+		this.population = population;
+		this.carbon = carbon;
+		this.percapcarb = percapcarb;
+		this.popdensity = popdensity;
+		this.hasc1 = hasc1;
+		this.pointX = pointX;
+		this.pointY = pointY;
+	}
 
 	@Override
 	public String toString() {
 		return "PlaceInfo [placeId=" + placeId + ", type=" + type + ", ecoName=" + ecoName + ", wwfMhtnam=" + wwfMhtnam
-				+ ", wwfRealm2=" + wwfRealm2 + ", names count=" + names.size() + ", population=" + population + ", carbon="
-				+ carbon + ", percapcarb=" + percapcarb + ", popdensity=" + popdensity + ", hasc1=" + hasc1
-				+ ", pointX=" + pointX + ", pointY=" + pointY + "]";
+				+ ", wwfRealm2=" + wwfRealm2 + ", names count=" + names.size() + ", population=" + population
+				+ ", carbon=" + carbon + ", percapcarb=" + percapcarb + ", popdensity=" + popdensity + ", hasc1="
+				+ hasc1 + ", pointX=" + pointX + ", pointY=" + pointY + "]";
 	}
 
 }
