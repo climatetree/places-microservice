@@ -31,8 +31,8 @@ public class PlacesController {
 	}
 	
 	@GetMapping("/names/{name}")
-	public Set<PlaceDTO> getAllPlaces(@PathVariable("name") String name) {
-		return namesService.getNamesLike(name);
+	public Set<PlaceDTO> getPlacesByName(@PathVariable("name") String name) {
+		return namesService.getPlacesByName(name);
 	}
 
 }
