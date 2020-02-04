@@ -23,7 +23,7 @@ public class NamesService {
 		Set<PlaceDTO> places = new HashSet<>();
 
 		List<Name> namesOfPlacesList = new ArrayList<>();
-		namesRepo.getPlacesByName(name.toUpperCase()).forEach(n -> namesOfPlacesList.add(n));
+		namesRepo.getPlacesByName(name.toUpperCase()).forEach(namesOfPlacesList::add);
 
 		for (Name n : namesOfPlacesList) {
 			for (PlaceInfo p : n.getPlaces()) {
