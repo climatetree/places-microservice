@@ -15,4 +15,9 @@ public interface PlacesRepository extends CrudRepository<PlaceInfo, Integer> {
 	@Query("Select place from PlaceInfo place where place.placeId=:id")
 	public List<PlaceInfo> findPlacesById(@Param("id") int id);
 	
+	@Query("Select place from PlaceInfo place WHERE place.population>=:popStart AND place.population<=:popEnd AND place.popdensity>=:popDensityStart AND place.popdensity<=:popDensityEnd")
+	public List<PlaceInfo> getSimilarPlaces(@Param("popStart") double popStart, 
+											@Param("popEnd") double popEnd, 
+											@Param("popDensityStart") double popDensityStart,
+											@Param("popDensityEnd") double popDensityEnd);
 }
