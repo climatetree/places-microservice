@@ -19,6 +19,26 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "\"PLACE_INFO\"")
 public class PlaceInfo implements Serializable {
+	
+	public PlaceInfo(int placeId, Type type, EcoName ecoName, WwfMhtnam wwfMhtnam, WwfRealm2 wwfRealm2, double population,
+					double carbon, double percapcarb, double popdensity, String hasc1, double pointX, double pointY) {
+		this.placeId = placeId;
+		this.type = type;
+		this.ecoName = ecoName;
+		this.wwfMhtnam = wwfMhtnam;
+		this.wwfRealm2 = wwfRealm2;
+		this.population = population;
+		this.popdensity = popdensity;
+		this.hasc1 = hasc1;
+		this.pointX = pointX;
+		this.pointY = pointY;
+	}
+	
+	
+	public PlaceInfo() {
+	
+	}
+
 
 	@Id
 	@Column(name = "place_id")
@@ -190,4 +210,16 @@ public class PlaceInfo implements Serializable {
 				+ ", pointX=" + pointX + ", pointY=" + pointY + "]";
 	}
 
+
+	public boolean equals(Object object) {
+		if (this == object) return true;
+		if (object == null || getClass() != object.getClass()) return false;
+		if (!super.equals(object)) return false;
+		PlaceInfo placeInfo = (PlaceInfo) object;
+		return placeId == placeInfo.placeId;
+	}
+
+	public int hashCode() {
+		return java.util.Objects.hash(super.hashCode(), placeId, population, carbon, percapcarb, popdensity, hasc1, pointX, pointY);
+	}
 }
