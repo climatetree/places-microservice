@@ -59,6 +59,13 @@
 			<scope>test</scope>
 			<version>1.4.194</version>
 		</dependency>
+		
+		<dependency>
+    		<groupId>org.hibernate</groupId>
+    		<artifactId>hibernate-entitymanager</artifactId>
+    		<version>5.2.9.Final</version>
+		</dependency>
+			
 	</dependencies>
 
 	<build>

@@ -43,7 +43,8 @@ public class PlacesService {
 		double popDensity_start = place.getPopdensity() * .95;
 		double popDensity_end = place.getPopdensity() * 1.50;
 		
-		this.placesRepo.getSimilarPlaces(pop_start, pop_end, popDensity_start, popDensity_end).forEach(p -> places.add(p.convertToPlaceDTO()));
+		this.placesRepo.getSimilarPlaces(pop_start, pop_end, popDensity_start, popDensity_end)
+		.forEach(p -> places.add(p.convertToPlaceDTO()));
 		
 		return places;
 	}
