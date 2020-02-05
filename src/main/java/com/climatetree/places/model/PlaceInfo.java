@@ -60,9 +60,6 @@ public class PlaceInfo implements Serializable {
 	@JoinColumn(name = "wwf_realm2_id")
 	private WwfRealm2 wwfRealm2;
 
-//	@OneToMany(mappedBy = "place", fetch = FetchType.EAGER)
-////	@JsonIgnore
-//	private Set<NamePlace> namePlaces;
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "places")
 	@JsonBackReference
 	private Set<Name> names;
