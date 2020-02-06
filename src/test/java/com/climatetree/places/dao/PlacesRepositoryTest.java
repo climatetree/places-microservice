@@ -1,4 +1,4 @@
-package com.climatetree.places.controller;
+package com.climatetree.places.dao;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 @DataJpaTest
-public class PlacesControllerTest {
+public class PlacesRepositoryTest {
 	
 	@Autowired private DataSource dataSource;
 	@Autowired private JdbcTemplate jdbcTemplate;

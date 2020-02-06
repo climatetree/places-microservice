@@ -26,9 +26,6 @@ public class Name implements Serializable {
 	@Column(name = "name")
 	private String name;
 
-//	@OneToMany(mappedBy = "name", fetch = FetchType.EAGER)
-//	private Set<NamePlace> namePlaces;
-
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "\"NAME_PLACE\"", joinColumns = {
 			@JoinColumn(name = "NAME_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
@@ -64,5 +61,7 @@ public class Name implements Serializable {
 	public String toString() {
 		return "Name [nameId=" + nameId + ", name=" + name + ", places count=" + places.size() + "]";
 	}
+	
+	
 
 }

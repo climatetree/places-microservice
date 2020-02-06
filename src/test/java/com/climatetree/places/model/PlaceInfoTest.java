@@ -26,7 +26,7 @@ class PlaceInfoTest {
 
 	@Test
 	void testConvertToDTO1() {
-		PlaceDTO expected = new PlaceDTO(0, null, "type", 1.0, 2.0, 3.0, 4.0);
+		PlaceDTO expected = new PlaceDTO(0, null, "type", 1.0, 2.0, 3.0, 4.0, 5, 6);
 		PlaceDTO actual = input.convertToPlaceDTO();
 		
 		// Assert
@@ -41,7 +41,7 @@ class PlaceInfoTest {
 		name.setName("USA");
 		names.add(name);
 		input.setNames(names);
-		PlaceDTO expected = new PlaceDTO(0, "USA", "type", 1.0, 2.0, 3.0, 4.0);
+		PlaceDTO expected = new PlaceDTO(0, "USA", "type", 1.0, 2.0, 3.0, 4.0, 5, 6);
 		PlaceDTO actual = input.convertToPlaceDTO();
 		
 		// Assert
@@ -52,7 +52,7 @@ class PlaceInfoTest {
 	@Test
 	void testConvertToDTO3() {
 		input.setNames(new HashSet<Name>());
-		PlaceDTO expected = new PlaceDTO(0, null, "type", 1.0, 2.0, 3.0, 4.0);
+		PlaceDTO expected = new PlaceDTO(0, null, "type", 1.0, 2.0, 3.0, 4.0, 5, 6);
 		PlaceDTO actual = input.convertToPlaceDTO();
 		
 		// Assert
@@ -63,7 +63,7 @@ class PlaceInfoTest {
 	@Test
 	void testConvertToDTO4() {
 		input.setType(new Type());
-		PlaceDTO expected = new PlaceDTO(0, null, null, 1.0, 2.0, 3.0, 4.0);
+		PlaceDTO expected = new PlaceDTO(0, null, null, 1.0, 2.0, 3.0, 4.0, 5, 6);
 		PlaceDTO actual = input.convertToPlaceDTO();
 		
 		// Assert
@@ -74,7 +74,7 @@ class PlaceInfoTest {
 	@Test
 	void testConvertToDTO5() {
 		input.setType(null);
-		PlaceDTO expected = new PlaceDTO(0, null, null, 1.0, 2.0, 3.0, 4.0);
+		PlaceDTO expected = new PlaceDTO(0, null, null, 1.0, 2.0, 3.0, 4.0, 5, 6);
 		PlaceDTO actual = input.convertToPlaceDTO();
 		
 		// Assert

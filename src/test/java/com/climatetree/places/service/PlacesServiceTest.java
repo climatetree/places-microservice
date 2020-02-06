@@ -55,7 +55,7 @@ class PlacesServiceTest {
 		when(repo.getSimilarPlaces(anyDouble(), anyDouble(), anyDouble(), anyDouble())).thenReturn(our_list);
 		
 		// call the placesService.getSimilarPlaces function
-		PlaceDTO param = new PlaceDTO(0, "", "", 1.0, 2.0, 3.0, 4.0);
+		PlaceDTO param = new PlaceDTO(0, "", "", 1.0, 2.0, 3.0, 4.0, 5, 6);
 		List<PlaceDTO> places = service.getSimilarPlaces(param);
 		
 		// Assert that our function returned the right information

@@ -197,7 +197,9 @@ public class PlaceInfo implements Serializable {
 							this.population, 
 							this.carbon, 
 							this.percapcarb, 
-							this.popdensity);
+							this.popdensity,
+							this.pointX,
+							this.pointY);
 	}
 	
 	
