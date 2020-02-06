@@ -186,7 +186,6 @@ public class PlaceInfo implements Serializable {
 	}
 
 	public PlaceInfo() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

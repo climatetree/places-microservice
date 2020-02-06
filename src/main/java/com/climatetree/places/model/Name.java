@@ -74,7 +74,6 @@ public class Name implements Serializable {
 	}
 
 	public Name() {
-		// TODO Auto-generated constructor stub
 	}
 
 }
