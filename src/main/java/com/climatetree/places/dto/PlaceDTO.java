@@ -67,22 +67,6 @@ public class PlaceDTO {
 	public void setPopdensity(double popdensity) {
 		this.popdensity = popdensity;
 	}
-	
-	public double getPointX() {
-		return pointX;
-	}
-
-	public void setPointX(double pointX) {
-		this.pointX = pointX;
-	}
-
-	public double getPointY() {
-		return pointY;
-	}
-
-	public void setPointY(double pointY) {
-		this.pointY = pointY;
-	}
 
 	@Override
 	public String toString() {
