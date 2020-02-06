@@ -185,6 +185,10 @@ public class PlaceInfo implements Serializable {
 		this.pointY = pointY;
 	}
 
+	public PlaceInfo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String toString() {
 		return "PlaceInfo [placeId=" + placeId + ", type=" + type + ", ecoName=" + ecoName + ", wwfMhtnam=" + wwfMhtnam

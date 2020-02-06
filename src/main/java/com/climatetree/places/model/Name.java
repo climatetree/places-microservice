@@ -73,8 +73,8 @@ public class Name implements Serializable {
 		return "Name [nameId=" + nameId + ", name=" + name + ", places count=" + places.size() + "]";
 	}
 
-	public Name(int nameId) {
-		this.nameId = nameId;
+	public Name() {
+		// TODO Auto-generated constructor stub
 	}
 
 }

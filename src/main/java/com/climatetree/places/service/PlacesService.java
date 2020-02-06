@@ -7,14 +7,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.climatetree.places.dao.PlacesRepository;
+import com.climatetree.places.dao.PlaceRepository;
 import com.climatetree.places.model.PlaceInfo;
 
 @Service
 public class PlacesService {
 
 	@Autowired
-	PlacesRepository placesRepo;
+	PlaceRepository placesRepo;
 
 	public PlaceInfo findPlaceById(int placeId) {
 		Optional<PlaceInfo> placesOp =  placesRepo.findById(placeId);

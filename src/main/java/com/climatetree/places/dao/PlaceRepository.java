@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.climatetree.places.model.PlaceInfo;
 
 @Repository
-public interface PlacesRepository extends CrudRepository<PlaceInfo, Integer> {
+public interface PlaceRepository extends CrudRepository<PlaceInfo, Integer> {
 }
