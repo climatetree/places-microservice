@@ -60,6 +60,7 @@ class PlacesServiceTest {
 		
 		// Assert that our function returned the right information
 		assertThat(places).hasSize(1);
+		assertThat(places.get(0)).isEqualTo(repoParam.convertToPlaceDTO());
 	}
 
 }
