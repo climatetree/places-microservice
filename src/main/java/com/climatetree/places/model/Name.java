@@ -62,9 +62,19 @@ public class Name implements Serializable {
 		this.places = places;
 	}
 
+	public Name(int nameId, String name, Set<PlaceInfo> places) {
+		this.nameId = nameId;
+		this.name = name;
+		this.places = places;
+	}
+
 	@Override
 	public String toString() {
 		return "Name [nameId=" + nameId + ", name=" + name + ", places count=" + places.size() + "]";
+	}
+
+	public Name(int nameId) {
+		this.nameId = nameId;
 	}
 
 }

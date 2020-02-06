@@ -167,14 +167,53 @@ public class PlaceInfo implements Serializable {
 	public void setPointY(double pointY) {
 		this.pointY = pointY;
 	}
-	
-	
+
+	public PlaceInfo(int placeId, Type type, EcoName ecoName, WwfMhtnam wwfMhtnam, WwfRealm2 wwfRealm2, Set<Name> names,
+			double population, double carbon, double percapcarb, double popdensity, String hasc1, double pointX,
+			double pointY) {
+		this.placeId = placeId;
+		this.type = type;
+		this.ecoName = ecoName;
+		this.wwfMhtnam = wwfMhtnam;
+		this.wwfRealm2 = wwfRealm2;
+		this.names = names;
+		this.population = population;
+		this.carbon = carbon;
+		this.percapcarb = percapcarb;
+		this.popdensity = popdensity;
+		this.hasc1 = hasc1;
+		this.pointX = pointX;
+		this.pointY = pointY;
+	}
+
 	@Override
 	public String toString() {
 		return "PlaceInfo [placeId=" + placeId + ", type=" + type + ", ecoName=" + ecoName + ", wwfMhtnam=" + wwfMhtnam
 				+ ", wwfRealm2=" + wwfRealm2 + ", names count=" + names.size() + ", population=" + population
 				+ ", carbon=" + carbon + ", percapcarb=" + percapcarb + ", popdensity=" + popdensity + ", hasc1="
 				+ hasc1 + ", pointX=" + pointX + ", pointY=" + pointY + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + placeId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PlaceInfo other = (PlaceInfo) obj;
+		if (placeId != other.placeId)
+			return false;
+		return true;
 	}
 
 }

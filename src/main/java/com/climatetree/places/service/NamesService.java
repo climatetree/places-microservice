@@ -8,7 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.climatetree.places.dao.NamesRepository;
+import com.climatetree.places.dao.NameRepository;
 import com.climatetree.places.dto.PlaceDTO;
 import com.climatetree.places.model.Name;
 import com.climatetree.places.model.PlaceInfo;
@@ -17,7 +17,7 @@ import com.climatetree.places.model.PlaceInfo;
 public class NamesService {
 
 	@Autowired
-	NamesRepository namesRepo;
+	NameRepository namesRepo;
 
 	public Set<PlaceDTO> getPlacesByName(String name) {
 		Set<PlaceDTO> places = new HashSet<>();
@@ -27,8 +27,9 @@ public class NamesService {
 
 		for (Name n : namesOfPlacesList) {
 			for (PlaceInfo p : n.getPlaces()) {
-				PlaceDTO dto = new PlaceDTO(p.getPlaceId(), n.getName(), p.getType().getTypeName(), p.getPopulation(),
-						p.getCarbon(), p.getPercapcarb(), p.getPopdensity());
+				PlaceDTO dto = new PlaceDTO(p.getPlaceId(), n.getName(),
+						(p.getType() == null ? "" : p.getType().getTypeName()), p.getPopulation(), p.getCarbon(),
+						p.getPercapcarb(), p.getPopdensity(), p.getPointX(), p.getPointY());
 				places.add(dto);
 			}
 		}
