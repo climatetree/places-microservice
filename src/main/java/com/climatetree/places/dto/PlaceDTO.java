@@ -9,6 +9,8 @@ public class PlaceDTO {
 	private double carbon;
 	private double percapcarb;
 	private double popdensity;
+	private double pointX;
+	private double pointY;
 
 	public int getPlaceId() {
 		return placeId;
@@ -65,15 +67,32 @@ public class PlaceDTO {
 	public void setPopdensity(double popdensity) {
 		this.popdensity = popdensity;
 	}
+	
+	public double getPointX() {
+		return pointX;
+	}
+
+	public void setPointX(double pointX) {
+		this.pointX = pointX;
+	}
+
+	public double getPointY() {
+		return pointY;
+	}
+
+	public void setPointY(double pointY) {
+		this.pointY = pointY;
+	}
 
 	@Override
 	public String toString() {
 		return "PlaceDTO [placeId=" + placeId + ", name=" + name + ", typeName=" + typeName + ", population="
-				+ population + ", carbon=" + carbon + ", percapcarb=" + percapcarb + ", popdensity=" + popdensity + "]";
+				+ population + ", carbon=" + carbon + ", percapcarb=" + percapcarb + ", popdensity=" + popdensity
+				+ ", pointX=" + pointX + ", pointY=" + pointY + "]";
 	}
 
 	public PlaceDTO(int placeId, String name, String typeName, double population, double carbon, double percapcarb,
-			double popdensity) {
+			double popdensity, double pointX, double pointY) {
 		this.placeId = placeId;
 		this.name = name;
 		this.typeName = typeName;
@@ -81,6 +100,8 @@ public class PlaceDTO {
 		this.carbon = carbon;
 		this.percapcarb = percapcarb;
 		this.popdensity = popdensity;
+		this.pointX = pointX;
+		this.pointY = pointY;
 	}
 
 	@Override
