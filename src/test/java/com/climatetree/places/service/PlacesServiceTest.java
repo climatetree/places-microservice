@@ -10,9 +10,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.climatetree.places.dao.PlacesRepository;
 import com.climatetree.places.dto.PlaceDTO;
@@ -22,13 +24,14 @@ import com.climatetree.places.model.Type;
 import com.climatetree.places.model.WwfMhtnam;
 import com.climatetree.places.model.WwfRealm2;
 
+@RunWith(MockitoJUnitRunner.class)
 class PlacesServiceTest {
 	
-	@Mock(name="placesRepo")
-    private PlacesRepository placesRepo;
-
 	@InjectMocks
-	PlacesService placesService;
+	PlacesService service;
+	
+	@Mock
+    private PlacesRepository repo;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -49,11 +52,11 @@ class PlacesServiceTest {
 		our_list.add(repoParam);
 		
 		// When we call getSimilarPlaces on our repo, return the above list we created
-		when(placesRepo.getSimilarPlaces(anyDouble(), anyDouble(), anyDouble(), anyDouble())).thenReturn(our_list);
+		when(repo.getSimilarPlaces(anyDouble(), anyDouble(), anyDouble(), anyDouble())).thenReturn(our_list);
 		
 		// call the placesService.getSimilarPlaces function
 		PlaceDTO param = new PlaceDTO(0, "", "", 1.0, 2.0, 3.0, 4.0);
-		List<PlaceDTO> places = placesService.getSimilarPlaces(param);
+		List<PlaceDTO> places = service.getSimilarPlaces(param);
 		
 		// Assert that our function returned the right information
 		assertThat(places).hasSize(1);

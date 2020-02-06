@@ -27,6 +27,8 @@ public class PlaceInfo implements Serializable {
 		this.ecoName = ecoName;
 		this.wwfMhtnam = wwfMhtnam;
 		this.wwfRealm2 = wwfRealm2;
+		this.carbon = carbon;
+		this.percapcarb = percapcarb;
 		this.population = population;
 		this.popdensity = popdensity;
 		this.hasc1 = hasc1;
@@ -120,10 +122,6 @@ public class PlaceInfo implements Serializable {
 		this.wwfRealm2 = wwfRealm2;
 	}
 
-//	public Set<NamePlace> getNamePlaces() {
-//		return namePlaces;
-//	}
-
 
 	public double getPopulation() {
 		return population;
@@ -190,14 +188,19 @@ public class PlaceInfo implements Serializable {
 	}
 
 	public PlaceDTO convertToPlaceDTO() {
+		String name = (this.names == null || this.names.isEmpty()) ? null : this.names.iterator().next().getName();
+		String typeName = (this.type == null) ? null : this.type.getTypeName();
+		
 		return new PlaceDTO(this.placeId, 
-							this.names.iterator().next().getName(), 
-							this.type.getTypeName(), 
+							name, 
+							typeName, 
 							this.population, 
 							this.carbon, 
 							this.percapcarb, 
 							this.popdensity);
 	}
+	
+	
 	
 	@Override
 	public String toString() {
