@@ -23,6 +23,7 @@ import com.climatetree.places.model.PlaceInfo;
 import com.climatetree.places.model.Type;
 import com.climatetree.places.model.WwfMhtnam;
 import com.climatetree.places.model.WwfRealm2;
+import com.climatetree.places.utils.Mapper;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlacesServiceTest {
@@ -60,7 +61,7 @@ public class PlacesServiceTest {
 		
 		// Assert that our function returned the right information
 		assertThat(places).hasSize(1);
-		assertThat(places.get(0)).isEqualTo(repoParam.convertToPlaceDTO());
+		assertThat(places.get(0)).isEqualTo(Mapper.placeInfoToPlaceDTO(repoParam));
 	}
 
 }

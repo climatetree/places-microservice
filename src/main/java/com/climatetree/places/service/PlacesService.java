@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.climatetree.places.dto.PlaceDTO;
 import com.climatetree.places.dao.PlaceRepository;
 import com.climatetree.places.model.PlaceInfo;
+import com.climatetree.places.utils.Mapper;
 
 @Service
 public class PlacesService {
@@ -44,7 +45,7 @@ public class PlacesService {
 		double popDensity_end = place.getPopdensity() * 1.50;
 		
 		this.placesRepo.getSimilarPlaces(pop_start, pop_end, popDensity_start, popDensity_end)
-		.forEach(p -> places.add(p.convertToPlaceDTO()));
+		.forEach(p -> places.add(Mapper.placeInfoToPlaceDTO(p)));
 		
 		return places;
 	}

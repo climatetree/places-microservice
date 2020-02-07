@@ -189,22 +189,6 @@ public class PlaceInfo implements Serializable {
 	public void setPointY(double pointY) {
 		this.pointY = pointY;
 	}
-
-
-	public PlaceDTO convertToPlaceDTO() {
-		String name = (this.names == null || this.names.isEmpty()) ? null : this.names.iterator().next().getName();
-		String typeName = (this.type == null) ? null : this.type.getTypeName();
-		
-		return new PlaceDTO(this.placeId, 
-							name, 
-							typeName, 
-							this.population, 
-							this.carbon, 
-							this.percapcarb, 
-							this.popdensity,
-							this.pointX,
-							this.pointY);
-	}
 	
 	
 	public PlaceInfo(int placeId, Type type, EcoName ecoName, WwfMhtnam wwfMhtnam, WwfRealm2 wwfRealm2, Set<Name> names,

@@ -1,6 +1,5 @@
-package com.climatetree.places.model;
+package com.climatetree.places.utils;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashSet;
@@ -9,8 +8,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.climatetree.places.dto.PlaceDTO;
+import com.climatetree.places.model.EcoName;
+import com.climatetree.places.model.Name;
+import com.climatetree.places.model.PlaceInfo;
+import com.climatetree.places.model.Type;
+import com.climatetree.places.model.WwfMhtnam;
+import com.climatetree.places.model.WwfRealm2;
+import com.climatetree.places.utils.Mapper;
 
-class PlaceInfoTest {
+class MapperTest {
 	
 	PlaceInfo input;
 	
@@ -27,7 +33,7 @@ class PlaceInfoTest {
 	@Test
 	void testConvertToDTO1() {
 		PlaceDTO expected = new PlaceDTO(0, null, "type", 1.0, 2.0, 3.0, 4.0, 5, 6);
-		PlaceDTO actual = input.convertToPlaceDTO();
+		PlaceDTO actual = Mapper.placeInfoToPlaceDTO(input);
 		
 		// Assert
 		assertThat(actual).isEqualTo(expected);
@@ -42,7 +48,7 @@ class PlaceInfoTest {
 		names.add(name);
 		input.setNames(names);
 		PlaceDTO expected = new PlaceDTO(0, "USA", "type", 1.0, 2.0, 3.0, 4.0, 5, 6);
-		PlaceDTO actual = input.convertToPlaceDTO();
+		PlaceDTO actual = Mapper.placeInfoToPlaceDTO(input);
 		
 		// Assert
 		assertThat(actual).isEqualTo(expected);
@@ -53,7 +59,7 @@ class PlaceInfoTest {
 	void testConvertToDTO3() {
 		input.setNames(new HashSet<Name>());
 		PlaceDTO expected = new PlaceDTO(0, null, "type", 1.0, 2.0, 3.0, 4.0, 5, 6);
-		PlaceDTO actual = input.convertToPlaceDTO();
+		PlaceDTO actual = Mapper.placeInfoToPlaceDTO(input);
 		
 		// Assert
 		assertThat(actual).isEqualTo(expected);
@@ -64,7 +70,7 @@ class PlaceInfoTest {
 	void testConvertToDTO4() {
 		input.setType(new Type());
 		PlaceDTO expected = new PlaceDTO(0, null, null, 1.0, 2.0, 3.0, 4.0, 5, 6);
-		PlaceDTO actual = input.convertToPlaceDTO();
+		PlaceDTO actual = Mapper.placeInfoToPlaceDTO(input);
 		
 		// Assert
 		assertThat(actual).isEqualTo(expected);
@@ -75,7 +81,7 @@ class PlaceInfoTest {
 	void testConvertToDTO5() {
 		input.setType(null);
 		PlaceDTO expected = new PlaceDTO(0, null, null, 1.0, 2.0, 3.0, 4.0, 5, 6);
-		PlaceDTO actual = input.convertToPlaceDTO();
+		PlaceDTO actual = Mapper.placeInfoToPlaceDTO(input);
 		
 		// Assert
 		assertThat(actual).isEqualTo(expected);
