@@ -121,10 +121,19 @@ public class PlaceDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		PlaceDTO other = (PlaceDTO) obj;
-		if (placeId != other.placeId)
-			return false;
-		return true;
+		if ((placeId == other.placeId) 
+				&& ((name == null && other.name == null) || (name.equals(other.name)))
+				&& ((typeName == null && other.typeName == null) || (typeName.equals(other.typeName)))
+				&& (population == other.population)
+				&& (carbon == other.carbon)
+				&& (percapcarb == other.percapcarb)
+				&& (popdensity == other.popdensity)
+				&& (pointX == other.pointX)
+				&& (pointY == other.pointY))
+			return true;
+		return false;
 	}
+
 
 	
 }
