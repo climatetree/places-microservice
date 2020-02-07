@@ -22,6 +22,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.climatetree.places.dto.PlaceDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(PlacesController.class)
@@ -34,7 +37,7 @@ public class PlacesControllerTest {
 	private PlacesController controller;
 
 	@Test
-	void getSimilarPlacesTest() throws Exception {
+	public void getSimilarPlacesTest() throws Exception {
 		List<PlaceDTO> places = new ArrayList<>();
 		PlaceDTO dto1 = new PlaceDTO(1, "Manchester", null, 1, 2, 3, 4, 5, 6);
 		PlaceDTO dto2 = new PlaceDTO(2, "Boston", null, 1.50, 2, 3, 5.00, 5, 6);
@@ -42,10 +45,15 @@ public class PlacesControllerTest {
 		places.add(dto1);
 		places.add(dto2);
 
-		given(controller.getSimilarPlaces(anyInt(), any(PlaceDTO.class))).willReturn(places);
-
+		given(controller.getSimilarPlaces(any(Integer.class), any(PlaceDTO.class))).willReturn(places);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+		ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+		String body = ow.writeValueAsString(dto1);
+		
 		List<PlaceDTO> placesList = new ArrayList<>(places);
-		mvc.perform(get("/places/0/similar").contentType(APPLICATION_JSON)).andExpect(status().isOk())
+		mvc.perform(get("/climatetree/places/1/similar").contentType(APPLICATION_JSON).content(body)).andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(2)))
 				.andExpect(jsonPath("$[0].placeId", is(placesList.get(0).getPlaceId())))
 				.andExpect(jsonPath("$[1].placeId", is(placesList.get(1).getPlaceId())));
