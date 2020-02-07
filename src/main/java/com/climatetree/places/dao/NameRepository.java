@@ -12,6 +12,7 @@ import com.climatetree.places.model.Name;
 @Repository
 public interface NameRepository extends CrudRepository<Name, Integer> {
 	
+
 	@Query("Select name from Name name where upper(name.name) like :upperName%")
 	public List<Name> getPlacesByName(@Param("upperName") String upperName);
 

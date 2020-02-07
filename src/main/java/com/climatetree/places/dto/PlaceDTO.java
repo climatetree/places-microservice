@@ -126,4 +126,5 @@ public class PlaceDTO {
 		return true;
 	}
 
+	
 }

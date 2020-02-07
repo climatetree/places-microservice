@@ -12,11 +12,34 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.climatetree.places.dto.PlaceDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "\"PLACE_INFO\"")
 public class PlaceInfo implements Serializable {
+	
+	public PlaceInfo(int placeId, Type type, EcoName ecoName, WwfMhtnam wwfMhtnam, WwfRealm2 wwfRealm2, double population,
+					double carbon, double percapcarb, double popdensity, String hasc1, double pointX, double pointY) {
+		this.placeId = placeId;
+		this.type = type;
+		this.ecoName = ecoName;
+		this.wwfMhtnam = wwfMhtnam;
+		this.wwfRealm2 = wwfRealm2;
+		this.carbon = carbon;
+		this.percapcarb = percapcarb;
+		this.population = population;
+		this.popdensity = popdensity;
+		this.hasc1 = hasc1;
+		this.pointX = pointX;
+		this.pointY = pointY;
+	}
+	
+	
+	public PlaceInfo() {
+	
+	}
+
 
 	/**
 	 * 
@@ -166,7 +189,8 @@ public class PlaceInfo implements Serializable {
 	public void setPointY(double pointY) {
 		this.pointY = pointY;
 	}
-
+	
+	
 	public PlaceInfo(int placeId, Type type, EcoName ecoName, WwfMhtnam wwfMhtnam, WwfRealm2 wwfRealm2, Set<Name> names,
 			double population, double carbon, double percapcarb, double popdensity, String hasc1, double pointX,
 			double pointY) {
@@ -185,8 +209,6 @@ public class PlaceInfo implements Serializable {
 		this.pointY = pointY;
 	}
 
-	public PlaceInfo() {
-	}
 
 	@Override
 	public String toString() {
@@ -217,5 +239,6 @@ public class PlaceInfo implements Serializable {
 			return false;
 		return true;
 	}
+
 
 }
