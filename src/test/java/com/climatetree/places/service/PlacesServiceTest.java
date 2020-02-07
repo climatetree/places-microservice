@@ -16,7 +16,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.climatetree.places.dao.PlacesRepository;
+import com.climatetree.places.dao.PlaceRepository;
 import com.climatetree.places.dto.PlaceDTO;
 import com.climatetree.places.model.EcoName;
 import com.climatetree.places.model.PlaceInfo;
@@ -31,7 +31,7 @@ class PlacesServiceTest {
 	PlacesService service;
 	
 	@Mock
-    private PlacesRepository repo;
+    private PlaceRepository repo;
 
 	@Before
 	public void setUp() throws Exception {

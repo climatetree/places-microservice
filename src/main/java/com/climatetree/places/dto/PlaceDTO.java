@@ -68,6 +68,22 @@ public class PlaceDTO {
 		this.popdensity = popdensity;
 	}
 
+	public double getPointX() {
+		return pointX;
+	}
+
+	public void setPointX(double pointX) {
+		this.pointX = pointX;
+	}
+
+	public double getPointY() {
+		return pointY;
+	}
+
+	public void setPointY(double pointY) {
+		this.pointY = pointY;
+	}
+
 	@Override
 	public String toString() {
 		return "PlaceDTO [placeId=" + placeId + ", name=" + name + ", typeName=" + typeName + ", population="
@@ -92,18 +108,7 @@ public class PlaceDTO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(carbon);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		temp = Double.doubleToLongBits(percapcarb);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + placeId;
-		temp = Double.doubleToLongBits(popdensity);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(population);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((typeName == null) ? 0 : typeName.hashCode());
 		return result;
 	}
 
@@ -116,29 +121,10 @@ public class PlaceDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		PlaceDTO other = (PlaceDTO) obj;
-		if (Double.doubleToLongBits(carbon) != Double.doubleToLongBits(other.carbon))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (Double.doubleToLongBits(percapcarb) != Double.doubleToLongBits(other.percapcarb))
-			return false;
 		if (placeId != other.placeId)
-			return false;
-		if (Double.doubleToLongBits(popdensity) != Double.doubleToLongBits(other.popdensity))
-			return false;
-		if (Double.doubleToLongBits(population) != Double.doubleToLongBits(other.population))
-			return false;
-		if (typeName == null) {
-			if (other.typeName != null)
-				return false;
-		} else if (!typeName.equals(other.typeName))
 			return false;
 		return true;
 	}
 
-	
 	
 }

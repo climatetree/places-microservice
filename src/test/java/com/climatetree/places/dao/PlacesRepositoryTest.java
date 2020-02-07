@@ -6,19 +6,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.climatetree.places.dao.PlacesRepository;
-import com.climatetree.places.model.EcoName;
 import com.climatetree.places.model.PlaceInfo;
-import com.climatetree.places.model.Type;
-import com.climatetree.places.model.WwfMhtnam;
-import com.climatetree.places.model.WwfRealm2;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,7 +22,7 @@ public class PlacesRepositoryTest {
 	@Autowired private DataSource dataSource;
 	@Autowired private JdbcTemplate jdbcTemplate;
 	@Autowired private EntityManager entityManager;
-	@Autowired private PlacesRepository placesRepository;
+	@Autowired private PlaceRepository placesRepository;
 	
 	@Test
 	void injectedComponentsAreNotNullTest(){

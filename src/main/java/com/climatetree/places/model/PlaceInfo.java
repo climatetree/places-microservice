@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import com.climatetree.places.dto.PlaceDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "\"PLACE_INFO\"")
@@ -41,6 +40,11 @@ public class PlaceInfo implements Serializable {
 	
 	}
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7407606649493169837L;
 
 	@Id
 	@Column(name = "place_id")
@@ -122,7 +126,6 @@ public class PlaceInfo implements Serializable {
 		this.wwfRealm2 = wwfRealm2;
 	}
 
-
 	public double getPopulation() {
 		return population;
 	}
@@ -187,6 +190,7 @@ public class PlaceInfo implements Serializable {
 		this.pointY = pointY;
 	}
 
+
 	public PlaceDTO convertToPlaceDTO() {
 		String name = (this.names == null || this.names.isEmpty()) ? null : this.names.iterator().next().getName();
 		String typeName = (this.type == null) ? null : this.type.getTypeName();
@@ -203,25 +207,54 @@ public class PlaceInfo implements Serializable {
 	}
 	
 	
-	
+	public PlaceInfo(int placeId, Type type, EcoName ecoName, WwfMhtnam wwfMhtnam, WwfRealm2 wwfRealm2, Set<Name> names,
+			double population, double carbon, double percapcarb, double popdensity, String hasc1, double pointX,
+			double pointY) {
+		this.placeId = placeId;
+		this.type = type;
+		this.ecoName = ecoName;
+		this.wwfMhtnam = wwfMhtnam;
+		this.wwfRealm2 = wwfRealm2;
+		this.names = names;
+		this.population = population;
+		this.carbon = carbon;
+		this.percapcarb = percapcarb;
+		this.popdensity = popdensity;
+		this.hasc1 = hasc1;
+		this.pointX = pointX;
+		this.pointY = pointY;
+	}
+
+
 	@Override
 	public String toString() {
 		return "PlaceInfo [placeId=" + placeId + ", type=" + type + ", ecoName=" + ecoName + ", wwfMhtnam=" + wwfMhtnam
-				+ ", wwfRealm2=" + wwfRealm2 + ", names count=" + names.size() + ", population=" + population + ", carbon="
-				+ carbon + ", percapcarb=" + percapcarb + ", popdensity=" + popdensity + ", hasc1=" + hasc1
-				+ ", pointX=" + pointX + ", pointY=" + pointY + "]";
+				+ ", wwfRealm2=" + wwfRealm2 + ", names count=" + names.size() + ", population=" + population
+				+ ", carbon=" + carbon + ", percapcarb=" + percapcarb + ", popdensity=" + popdensity + ", hasc1="
+				+ hasc1 + ", pointX=" + pointX + ", pointY=" + pointY + "]";
 	}
 
-
-	public boolean equals(Object object) {
-		if (this == object) return true;
-		if (object == null || getClass() != object.getClass()) return false;
-		if (!super.equals(object)) return false;
-		PlaceInfo placeInfo = (PlaceInfo) object;
-		return placeId == placeInfo.placeId;
-	}
-
+	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(super.hashCode(), placeId, population, carbon, percapcarb, popdensity, hasc1, pointX, pointY);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + placeId;
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PlaceInfo other = (PlaceInfo) obj;
+		if (placeId != other.placeId)
+			return false;
+		return true;
+	}
+
+
 }

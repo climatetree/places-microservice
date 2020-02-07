@@ -10,10 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.climatetree.places.model.PlaceInfo;
 
 @Repository
-public interface PlacesRepository extends CrudRepository<PlaceInfo, Integer> {
-	
-	@Query("Select place from PlaceInfo place where place.placeId=:id")
-	public List<PlaceInfo> findPlacesById(@Param("id") int id);
+public interface PlaceRepository extends CrudRepository<PlaceInfo, Integer> {
 	
 	/**
 	 * Queries the database for PlaceInfo entries that are within the following range:

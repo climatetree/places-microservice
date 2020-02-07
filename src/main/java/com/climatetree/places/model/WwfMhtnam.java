@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="\"WWF_MHTNAM\"")
+@Table(name = "\"WWF_MHTNAM\"")
 public class WwfMhtnam implements Serializable {
 	
 	public WwfMhtnam(int wwfMhtnamId, String wwfMhtnamName, HashSet<PlaceInfo> places) {
@@ -27,13 +27,18 @@ public class WwfMhtnam implements Serializable {
 		
 	}
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -855276392768868197L;
+
 	@Id
 	@Column(name = "wwf_mhtnam_id")
 	private int wwfMhtnamId;
-	
+
 	@Column(name = "wwf_mhtnam")
 	private String wwfMhtnam;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "wwfMhtnam")
 	@JsonIgnore
 	private Set<PlaceInfo> places;
