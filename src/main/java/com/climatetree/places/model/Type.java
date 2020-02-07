@@ -13,16 +13,21 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="\"TYPE\"")
+@Table(name = "\"TYPE\"")
 public class Type implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8130883750882226588L;
 
 	@Id
 	@Column(name = "type_id")
 	private int typeId;
-	
+
 	@Column(name = "type_name")
 	private String typeName;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
 	@JsonIgnore
 	private Set<PlaceInfo> places;
