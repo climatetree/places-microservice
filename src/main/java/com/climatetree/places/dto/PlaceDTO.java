@@ -11,6 +11,10 @@ public class PlaceDTO {
 	private double popdensity;
 	private double pointX;
 	private double pointY;
+	
+	public PlaceDTO() {
+		
+	}
 
 	public int getPlaceId() {
 		return placeId;
