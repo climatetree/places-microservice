@@ -72,8 +72,6 @@ public class Name implements Serializable {
 	public String toString() {
 		return "Name [nameId=" + nameId + ", name=" + name + ", places count=" + places.size() + "]";
 	}
-	
-	
 
 	public Name() {
 	}

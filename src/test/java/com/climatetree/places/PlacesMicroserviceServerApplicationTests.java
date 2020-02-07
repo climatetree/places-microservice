@@ -1,4 +1,3 @@
-  
 package com.climatetree.places;
 
 import org.junit.Test;
