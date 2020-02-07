@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,13 +25,13 @@ import com.climatetree.places.model.WwfMhtnam;
 import com.climatetree.places.model.WwfRealm2;
 
 @RunWith(MockitoJUnitRunner.class)
-class PlacesServiceTest {
+public class PlacesServiceTest {
 	
 	@InjectMocks
 	PlacesService service;
 	
 	@Mock
-    private PlaceRepository repo;
+	private PlaceRepository repo;
 
 	@Before
 	public void setUp() throws Exception {
