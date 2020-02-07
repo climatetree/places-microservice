@@ -125,24 +125,24 @@ public class PlaceDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		PlaceDTO other = (PlaceDTO) obj;
-		if (Double.doubleToLongBits(carbon) != Double.doubleToLongBits(other.carbon))
+		if (carbon != other.carbon)
 			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (Double.doubleToLongBits(percapcarb) != Double.doubleToLongBits(other.percapcarb))
+		if (percapcarb != other.percapcarb)
 			return false;
 		if (placeId != other.placeId)
 			return false;
-		if (Double.doubleToLongBits(pointX) != Double.doubleToLongBits(other.pointX))
+		if (pointX != other.pointX)
 			return false;
-		if (Double.doubleToLongBits(pointY) != Double.doubleToLongBits(other.pointY))
+		if (pointY != other.pointY)
 			return false;
-		if (Double.doubleToLongBits(popdensity) != Double.doubleToLongBits(other.popdensity))
+		if (popdensity != other.popdensity)
 			return false;
-		if (Double.doubleToLongBits(population) != Double.doubleToLongBits(other.population))
+		if (population != other.population)
 			return false;
 		if (typeName == null) {
 			if (other.typeName != null)
@@ -155,5 +155,5 @@ public class PlaceDTO {
 
 
 
-	
+
 }
