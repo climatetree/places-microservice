@@ -121,18 +121,34 @@ public class PlaceDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		PlaceDTO other = (PlaceDTO) obj;
-		if ((placeId == other.placeId) 
-				&& ((name == null && other.name == null) || (name.equals(other.name)))
-				&& ((typeName == null && other.typeName == null) || (typeName.equals(other.typeName)))
-				&& (population == other.population)
-				&& (carbon == other.carbon)
-				&& (percapcarb == other.percapcarb)
-				&& (popdensity == other.popdensity)
-				&& (pointX == other.pointX)
-				&& (pointY == other.pointY))
-			return true;
-		return false;
+		if (Double.doubleToLongBits(carbon) != Double.doubleToLongBits(other.carbon))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (Double.doubleToLongBits(percapcarb) != Double.doubleToLongBits(other.percapcarb))
+			return false;
+		if (placeId != other.placeId)
+			return false;
+		if (Double.doubleToLongBits(pointX) != Double.doubleToLongBits(other.pointX))
+			return false;
+		if (Double.doubleToLongBits(pointY) != Double.doubleToLongBits(other.pointY))
+			return false;
+		if (Double.doubleToLongBits(popdensity) != Double.doubleToLongBits(other.popdensity))
+			return false;
+		if (Double.doubleToLongBits(population) != Double.doubleToLongBits(other.population))
+			return false;
+		if (typeName == null) {
+			if (other.typeName != null)
+				return false;
+		} else if (!typeName.equals(other.typeName))
+			return false;
+		return true;
 	}
+
+
 
 
 	
