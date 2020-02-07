@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -33,13 +33,13 @@ class PlacesServiceTest {
 	@Mock
     private PlacesRepository repo;
 
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 	}
 
 	@Test
-	final void testGetSimilarPlaces() {
+	public void getSimilarPlacesTest() {
 		// Create a PlaceInfo object
 		Type type = new Type(1, "type", new HashSet<PlaceInfo>());
 		EcoName ecoName = new EcoName(2, "ecoName", new HashSet<PlaceInfo>());
@@ -54,7 +54,7 @@ class PlacesServiceTest {
 		// When we call getSimilarPlaces on our repo, return the above list we created
 		when(repo.getSimilarPlaces(anyDouble(), anyDouble(), anyDouble(), anyDouble())).thenReturn(our_list);
 		
-		// call the placesService.getSimilarPlaces function
+		// call the placesService.ggitetSimilarPlaces function
 		PlaceDTO param = new PlaceDTO(0, "", "", 1.0, 2.0, 3.0, 4.0, 5, 6);
 		List<PlaceDTO> places = service.getSimilarPlaces(param);
 		
