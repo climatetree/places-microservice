@@ -11,6 +11,10 @@ public class PlaceDTO {
 	private double popdensity;
 	private double pointX;
 	private double pointY;
+	
+	public PlaceDTO() {
+		
+	}
 
 	public int getPlaceId() {
 		return placeId;
@@ -121,10 +125,35 @@ public class PlaceDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		PlaceDTO other = (PlaceDTO) obj;
+		if (carbon != other.carbon)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (percapcarb != other.percapcarb)
+			return false;
 		if (placeId != other.placeId)
+			return false;
+		if (pointX != other.pointX)
+			return false;
+		if (pointY != other.pointY)
+			return false;
+		if (popdensity != other.popdensity)
+			return false;
+		if (population != other.population)
+			return false;
+		if (typeName == null) {
+			if (other.typeName != null)
+				return false;
+		} else if (!typeName.equals(other.typeName))
 			return false;
 		return true;
 	}
 
-	
+
+
+
+
 }

@@ -91,7 +91,7 @@ class MapperTest {
 	@Test
 	void testConvertToDTO6() {
 		input.setNames(null);
-		PlaceDTO expected = new PlaceDTO(0, null, null, 1.0, 2.0, 3.0, 4.0, 5, 6);
+		PlaceDTO expected = new PlaceDTO(0, null, "type", 1.0, 2.0, 3.0, 4.0, 5, 6);
 		PlaceDTO actual = Mapper.placeInfoToPlaceDTO(input);
 		
 		// Assert
