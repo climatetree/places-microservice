@@ -7,12 +7,13 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.climatetree.places.model.PlaceInfo;
+import com.climatetree.places.model.Name;
 
 @Repository
-public interface PlacesRepository extends CrudRepository<PlaceInfo, Integer> {
+public interface NameRepository extends CrudRepository<Name, Integer> {
 	
-	@Query("Select place from PlaceInfo place where place.placeId=:id")
-	public List<PlaceInfo> findPlacesById(@Param("id") int id);
-	
+
+	@Query("Select name from Name name where upper(name.name) like :upperName%")
+	public List<Name> getPlacesByName(@Param("upperName") String upperName);
+
 }
