@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<!-- <exclusions> <exclusion> <artifactId>jackson-databind</artifactId> 
+			<!-- <exclusions> <exclusion> <artifactId>jackson-databind</artifactId>
 				<groupId>com.fasterxml.jackson.core</groupId> </exclusion> </exclusions> -->
 		</dependency>
 		<dependency>
@@ -40,7 +40,7 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- <dependency> <groupId>com.google.code.gson</groupId> <artifactId>gson</artifactId> 
+		<!-- <dependency> <groupId>com.google.code.gson</groupId> <artifactId>gson</artifactId>
 			</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -91,6 +91,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>places-service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
