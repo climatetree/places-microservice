@@ -57,7 +57,7 @@ public class PlacesServiceTest {
 		
 		// call the placesService.ggitetSimilarPlaces function
 		PlaceDTO param = new PlaceDTO(0, "", "", 1.0, 2.0, 3.0, 4.0, 5, 6);
-		List<PlaceDTO> places = service.getSimilarPlaces(param);
+		List<PlaceDTO> places = service.getSimilarPlaces(param.getPlaceId());
 		
 		// Assert that our function returned the right information
 		assertThat(places).hasSize(1);
