@@ -28,8 +28,8 @@ public class PlacesController {
 	NamesService namesService;
 
 	@GetMapping("/places/{placeId}/similar")
-	public List<PlaceDTO> getSimilarPlaces(@PathVariable("placeId") int placeId, @RequestBody PlaceDTO place) {
-		return placesService.getSimilarPlaces(place);
+	public List<PlaceDTO> getSimilarPlaces(@PathVariable("placeId") int placeId) {
+		return placesService.getSimilarPlaces(placeId);
 	}
 
 	@GetMapping("/names/{name}")
