@@ -2,11 +2,13 @@ package com.climatetree.places.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -51,6 +53,9 @@ public class PlacesServiceTest {
 		// Add the object to an ArrayList
 		List<PlaceInfo> our_list = new ArrayList<>();
 		our_list.add(repoParam);
+		
+		// When we call findById on our repo, return the above repoParam we created
+		when(repo.findById(anyInt())).thenReturn(Optional.of(repoParam));
 		
 		// When we call getSimilarPlaces on our repo, return the above list we created
 		when(repo.getSimilarPlaces(anyDouble(), anyDouble(), anyDouble(), anyDouble())).thenReturn(our_list);
