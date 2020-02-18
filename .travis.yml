@@ -1,28 +1,26 @@
 language: java
 jdk: openjdk8
-
 install:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 services:
-  - postgresql
-
+- postgresql
 before_script:
-  - psql -c 'create database POSTGRESQL;' -U postgres
-
+- psql -c 'create database POSTGRESQL;' -U postgres
 addons:
   sonarcloud:
     organization: climatetree
     token:
-      secure: "VFAJMwPe4Earo+R1DYlxDYhYYS2Qrgc5tkccq58zAlOv2R6OzFiCiRlolKX57F5JX3+Eo1nH2DI05NTyd8fIw6QxdkFtzlpEQ+aLpeLSXvY7ouTo8hO8/9SBPgu2Q6+GxXudcL+bpxB6X8lRoiQfjiKoxbg6joJZLxp8h0ugvsVGYxmwxxXiaWxH1fE2FdSNuH/X2MhVUZzyFSxstf6k0E0SXTlhWTxB2yogP7woiZ53lmU7XZJNir5H19Gnb7pTPNwNEMD0IgdDZSpIuRbuekO6NdFxiMi1B+P/2wzfEU+pTX0H+NJffaFZFcoRYlSMMH4Gwd6ijqyZ5v9rKzdVkYW3M0/uOB31U4stRYEEctf9C+cfGihdAO9Q/jfTkPO51cEAQkF4TtVryCzuqg7moudugbDHCXGxxe9H9DtHCawjCTBPIAG+XJF8vwsTmNmVXuk6cQe0IlXjmokn3j5eIK6A5jvvJJ28Y62hfmHhiHl7l1uMlNCPjoZ56X92rPbaJhwJ+70WJdZslBFp69M4my/yLDaPlZdQIb2biD7LFa+ZZ+wp43DoHI0eRK8Tucf223SR9+Nsjcgz3w31dpRRgwuSxvDUNo2LVIYumq4y+MTrS07Ks2pk7hD+kANE5znZRNlXrKA/0slcOLu6QiqMCjaFEOkVwmdiLMF4bP/0Wic="
-
+      secure: VFAJMwPe4Earo+R1DYlxDYhYYS2Qrgc5tkccq58zAlOv2R6OzFiCiRlolKX57F5JX3+Eo1nH2DI05NTyd8fIw6QxdkFtzlpEQ+aLpeLSXvY7ouTo8hO8/9SBPgu2Q6+GxXudcL+bpxB6X8lRoiQfjiKoxbg6joJZLxp8h0ugvsVGYxmwxxXiaWxH1fE2FdSNuH/X2MhVUZzyFSxstf6k0E0SXTlhWTxB2yogP7woiZ53lmU7XZJNir5H19Gnb7pTPNwNEMD0IgdDZSpIuRbuekO6NdFxiMi1B+P/2wzfEU+pTX0H+NJffaFZFcoRYlSMMH4Gwd6ijqyZ5v9rKzdVkYW3M0/uOB31U4stRYEEctf9C+cfGihdAO9Q/jfTkPO51cEAQkF4TtVryCzuqg7moudugbDHCXGxxe9H9DtHCawjCTBPIAG+XJF8vwsTmNmVXuk6cQe0IlXjmokn3j5eIK6A5jvvJJ28Y62hfmHhiHl7l1uMlNCPjoZ56X92rPbaJhwJ+70WJdZslBFp69M4my/yLDaPlZdQIb2biD7LFa+ZZ+wp43DoHI0eRK8Tucf223SR9+Nsjcgz3w31dpRRgwuSxvDUNo2LVIYumq4y+MTrS07Ks2pk7hD+kANE5znZRNlXrKA/0slcOLu6QiqMCjaFEOkVwmdiLMF4bP/0Wic=
 script:
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean test
-  - sonar-scanner
-
+- mvn clean test
+- sonar-scanner
 deploy:
   provider: script
   script: bash ./docker_push.sh
   on:
     branch: master
+notifications:
+  slack:
+    secure: Jp+R1MGFliTq9KoPA1du+dqVyb8WxjzZA6xybS28bZKavZSfthfMyFjH7KwbNxyrnnKHLLhYiBcw6UMaHYzJurZZ/tLgz+O+BvzuBbCJFBiqcVFXfMkPePj0P3Z3bQW/bJu4a1N53BoVI32XqVggariD5vxhuhYqwNKgGDAiFckfee/bW52LXg9sXEMiHMehOoKhGsz3Nnpy//oi7A1fKGvfmHekBsf37C1Rl86x4nypIBWvBbuiXqzVgxMja1z6xekynVLnQj635akd1giuOCb59+Ljna41+7LEnFpFDGZn372c0/ZVGAht1fTYbrWCoxU88eAA/UQj09xZ00jffKVR0VQrQ6/Y1eZACH1cLvBr2ad7SsjnpGJHThlJ7bY5xb4HyW+fEUswHG72Sh9tZKAeqVKd48kACtuNQj/SvVNaocQcxBAOmla6/htpHQBwabjGbf7btSQ5y1B4qSaf0tvgdsufddruiZRdQBvaqxM7L3RtrFUzIpwEhjJCdknUGRtvN+aSGWakdHbPdFp8ilsRLaQxr299C8NYOzqiWzyr0ZV6A8R3JWLHQkgor8yWMnoinGD7wU23RYLwF97g3G37tVs0aNN81CZvS/SbCzHDPrkIf1nv1PlRFKp1dkWR+zSDyowDAsw6uSjRuBsQpBw9Iou/zprKs2uQEtnc05k=
+    on_success: never
+    on_failure: always

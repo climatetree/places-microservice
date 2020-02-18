@@ -4,6 +4,7 @@ package com.climatetree.places.controller;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -70,7 +71,7 @@ public class PlacesControllerTest {
 		places.add(dto1);
 		places.add(dto2);
 
-		when(placeService.getSimilarPlaces(any(PlaceDTO.class))).thenReturn(places);
+		when(placeService.getSimilarPlaces(anyInt())).thenReturn(places);
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
