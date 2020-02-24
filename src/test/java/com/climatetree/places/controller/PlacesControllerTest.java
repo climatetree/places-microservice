@@ -57,7 +57,7 @@ public class PlacesControllerTest {
 		when(nameService.getPlacesByName(any(String.class))).thenReturn(places);
 
 		List<PlaceDTO> placesList = new ArrayList<>(places);
-		mvc.perform(get("/api/names/Man").contentType(APPLICATION_JSON)).andExpect(status().isOk())
+		mvc.perform(get("/api/places/Man").contentType(APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(2))).andExpect(jsonPath("$[0].name", is(placesList.get(0).getName())))
 				.andExpect(jsonPath("$[1].name", is(placesList.get(1).getName())));
 	}

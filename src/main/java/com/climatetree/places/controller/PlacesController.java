@@ -32,7 +32,7 @@ public class PlacesController {
 		return placesService.getSimilarPlaces(placeId);
 	}
 
-	@GetMapping("/names/{name}")
+	@GetMapping("/places/{name}")
 	public Set<PlaceDTO> getPlacesByName(@PathVariable("name") String name) {
 		return namesService.getPlacesByName(name);
 	}
