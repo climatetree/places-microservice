@@ -31,10 +31,10 @@ public class PlacesController {
 	public List<PlaceDTO> getSimilarPlaces(@PathVariable("placeId") int placeId) {
 		return placesService.getSimilarPlaces(placeId);
 	}
-
-	@GetMapping("/names/{name}")
-	public Set<PlaceDTO> getPlacesByName(@PathVariable("name") String name) {
-		return namesService.getPlacesByName(name);
+	
+	@GetMapping("/places/{name}")
+	public String getPlacesByName(@PathVariable("name") String name) {
+		return namesService.getPlacesBySearchTerm(name);
 	}
-
+	
 }

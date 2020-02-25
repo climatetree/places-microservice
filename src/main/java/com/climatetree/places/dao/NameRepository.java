@@ -1,19 +1,25 @@
 package com.climatetree.places.dao;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.climatetree.places.model.Name;
 
 @Repository
 public interface NameRepository extends CrudRepository<Name, Integer> {
-	
 
-	@Query("Select name from Name name where upper(name.name) like :upperName%")
-	public List<Name> getPlacesByName(@Param("upperName") String upperName);
+	@Query(value = "SELECT cast(row_to_json(fc) as character varying)\n"
+			+ " FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features\n"
+			+ "	 	FROM (SELECT 'Feature' As type,\n"
+			+ "  		  ST_AsGeoJSON(place.point)\\:\\:json As geometry,\n"
+			+ "  		  row_to_json((SELECT l FROM (SELECT place.place_id, population, carbon, percapcarb, popdensity, biomass, coal,\n"
+			+ "						cogeneration, gas, geothermal, hydro, nuclear, oil, other, petcoke, solar, storage,\n"
+			+ "						 waste, wave_and_tidal, wind, n.name) As l\n" + "  		    )) As properties\n"
+			+ "  		 FROM public.\"PLACE_INFO\" as place \n" + "			JOIN public.\"NAME_PLACE\" as np\n"
+			+ "	     		ON place.place_id = np.place_id\n" + "	   		JOIN public.\"NAME\" as n\n"
+			+ "	   		ON np.name_id = n.name_id\n" + "  		 WHERE upper(n.name) LIKE ?1%\n" + "         ) As f \n"
+			+ "	   ) As fc;", nativeQuery = true)
+	public String getPlacesBySearchTerm(String upperName);
 
 }
