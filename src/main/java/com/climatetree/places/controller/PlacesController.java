@@ -32,7 +32,6 @@ public class PlacesController {
 	public String getSimilarPlaces(@PathVariable("placeId") int placeId,
 																 @RequestParam(required = false) Integer start,
 																 @RequestParam(required = false) Integer end) {
-		System.out.println(String.valueOf(start) + String.valueOf(end));
 		return placesService.getSimilarPlaces(placeId, start, end);
 	}
 
