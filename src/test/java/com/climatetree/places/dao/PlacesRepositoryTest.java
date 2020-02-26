@@ -3,55 +3,32 @@ package com.climatetree.places.dao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.jdbc.Sql;
-
 import com.climatetree.places.model.PlaceInfo;
 
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.sql.DataSource;
+import java.util.HashSet;
+import java.util.Set;
 
 @DataJpaTest
 public class PlacesRepositoryTest {
-	
-	@Autowired private DataSource dataSource;
-	@Autowired private JdbcTemplate jdbcTemplate;
-	@Autowired private EntityManager entityManager;
-	@Autowired private PlaceRepository placesRepository;
-	
-	@Test
-	void injectedComponentsAreNotNullTest(){
-	  assertThat(dataSource).isNotNull();
-	  assertThat(jdbcTemplate).isNotNull();
-	  assertThat(entityManager).isNotNull();
-	  assertThat(placesRepository).isNotNull();
-	}
-	  	  
-	@Test
-	@Sql(scripts={"classpath:createPlace.sql"})
-	void placesRepositoryTest() {
-		List<PlaceInfo> actual = placesRepository.getSimilarPlaces(.95, 1.25, 3.8, 5.0);
 
-		boolean[] success = {false, false, false, false, false};
-		
-		for (int i = 0; i < actual.size(); i++) {
-			int id = actual.get(i).getPlaceId();
-			success[id] = true;
-		}
-		
-		boolean total_success = true;
-		for(boolean b : success) if(!b) total_success = false;
-		
-		assertThat(actual).isNotNull();
-		assertThat(total_success).isTrue();
-		assertThat(actual).hasSize(5);
-		
+	@Autowired private PlaceRepository repository;
+
+	@Test
+	void saveAndFindByIdTest() {
+		Set<PlaceInfo> places1 = new HashSet<>();
+		PlaceInfo p1 = new PlaceInfo(1, null, null, null, null, null, 10.0, 11.0, 12.0, 13.0, "h1", 22.0, 22.5);
+		PlaceInfo p2 = new PlaceInfo(2, null, null, null, null, null, 14.0, 16.0, 11.0, 33.0, "h2", 26.0, 27.5);
+		places1.add(p1);
+		places1.add(p2);
+
+		repository.save(p1);
+		PlaceInfo place = repository.findById(p1.getPlaceId()).isPresent() ? repository.findById(p1.getPlaceId()).get() : null;
+
+		assertNotNull(place);
+		assertEquals(place.getPopulation(), p1.getPopulation(), .001);
 	}
-	  
- 
 }

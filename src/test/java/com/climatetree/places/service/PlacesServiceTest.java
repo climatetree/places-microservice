@@ -25,7 +25,6 @@ import com.climatetree.places.model.PlaceInfo;
 import com.climatetree.places.model.Type;
 import com.climatetree.places.model.WwfMhtnam;
 import com.climatetree.places.model.WwfRealm2;
-import com.climatetree.places.utils.Mapper;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlacesServiceTest {
@@ -49,24 +48,22 @@ public class PlacesServiceTest {
 		WwfMhtnam wwfmhtnam = new WwfMhtnam(3, "wwfmhtnam", new HashSet<PlaceInfo>());
 		WwfRealm2 wwfrealm2 = new WwfRealm2(4, "wwfrealm2", new HashSet<PlaceInfo>());
 		PlaceInfo repoParam = new PlaceInfo(0, type, ecoName, wwfmhtnam, wwfrealm2, 1.0, 2.0, 3.0, 4.0, "hasc1", 5.0, 6.0);
-		
+
 		// Add the object to an ArrayList
-		List<PlaceInfo> our_list = new ArrayList<>();
-		our_list.add(repoParam);
-		
+		String json_object = "Json Object";
+
 		// When we call findById on our repo, return the above repoParam we created
 		when(repo.findById(anyInt())).thenReturn(Optional.of(repoParam));
-		
+
 		// When we call getSimilarPlaces on our repo, return the above list we created
-		when(repo.getSimilarPlaces(anyDouble(), anyDouble(), anyDouble(), anyDouble())).thenReturn(our_list);
-		
+		when(repo.getSimilarPlaces(anyDouble(), anyDouble(), anyInt())).thenReturn(json_object);
+
 		// call the placesService.ggitetSimilarPlaces function
 		PlaceDTO param = new PlaceDTO(0, "", "", 1.0, 2.0, 3.0, 4.0, 5, 6);
-		List<PlaceDTO> places = service.getSimilarPlaces(param.getPlaceId());
-		
+		String places = service.getSimilarPlaces(param.getPlaceId(), 95, 150);
+
 		// Assert that our function returned the right information
-		assertThat(places).hasSize(1);
-		assertThat(places.get(0)).isEqualTo(Mapper.placeInfoToPlaceDTO(repoParam));
+		assertThat(places).isEqualTo("Json Object");
 	}
 
 }

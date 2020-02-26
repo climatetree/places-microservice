@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.climatetree.places.dto.PlaceDTO;
@@ -28,10 +29,13 @@ public class PlacesController {
 	NamesService namesService;
 
 	@GetMapping("/places/{placeId}/similar")
-	public List<PlaceDTO> getSimilarPlaces(@PathVariable("placeId") int placeId) {
-		return placesService.getSimilarPlaces(placeId);
+	public String getSimilarPlaces(@PathVariable("placeId") int placeId,
+																 @RequestParam(required = false) Integer start,
+																 @RequestParam(required = false) Integer end) {
+		System.out.println(String.valueOf(start) + String.valueOf(end));
+		return placesService.getSimilarPlaces(placeId, start, end);
 	}
-	
+
 	@GetMapping("/places/{name}")
 	public String getPlacesByName(@PathVariable("name") String name) {
 		return namesService.getPlacesBySearchTerm(name);

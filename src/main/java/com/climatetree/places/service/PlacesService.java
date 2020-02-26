@@ -18,6 +18,10 @@ public class PlacesService {
 	@Autowired
 	PlaceRepository placesRepo;
 
+	private final int defaultStart = 95;
+	private final int defaultEnd = 150;
+
+
 	public PlaceInfo findPlaceById(int placeId) {
 		Optional<PlaceInfo> placesOp = placesRepo.findById(placeId);
 		return placesOp.isPresent() ? placesOp.get() : null;
@@ -31,26 +35,31 @@ public class PlacesService {
 
 	/**
 	 * Returns places that adhere to all of the following constraints when compared
-	 * to the given place: 1. Between 95% to 150% of the given place's population 2.
-	 * Between 95% to 150% of the given place's population density
+	 * to the given place: 1. Between percentStart and percentEnd of the given place's population 2.
+	 * Is the same type (nation, state, county, or urban extent) as the given place.
 	 * 
-	 * @param place a PlaceDTO object
+	 * @param placeId the placeId of a Place
+	 * @param percentStart the starting value for the population range percentage (95% should given as
+	 *                      95)
+	 * @param percentEnd the ending value for the population range percentage (150% should be given as
+	 *                   150)
 	 * @return a list of PlaceDTO objects that are "similar" to the given PlaceDTO
 	 */
-	public List<PlaceDTO> getSimilarPlaces(int placeId) {
-		List<PlaceDTO> places = new ArrayList<>();
+	public String getSimilarPlaces(int placeId, Integer percentStart, Integer percentEnd) {
 		Optional<PlaceInfo> placeOpt = placesRepo.findById(placeId);
+
+		int start = (percentStart != null) ? percentStart : defaultStart;
+		int end = (percentEnd != null) ? percentEnd : defaultEnd;
+
 		if (placeOpt.isPresent()) {
 			PlaceInfo place = placeOpt.get();
-			double pop_start = place.getPopulation() * .95;
-			double pop_end = place.getPopulation() * 1.50;
-			double popDensity_start = place.getPopdensity() * .95;
-			double popDensity_end = place.getPopdensity() * 1.50;
+			double popStart = place.getPopulation() * ((double) start / 100);
+			double popEnd = place.getPopulation() * ((double) end / 100);
+			int typeId = place.getType().getTypeId();
 
-			this.placesRepo.getSimilarPlaces(pop_start, pop_end, popDensity_start, popDensity_end)
-					.forEach(p -> places.add(Mapper.placeInfoToPlaceDTO(p)));
+			return this.placesRepo.getSimilarPlaces(popStart, popEnd, typeId);
 		}
-		return places;
+		return "";
 	}
 
 }
