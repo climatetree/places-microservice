@@ -30,9 +30,9 @@ public class PlacesController {
 
 	@GetMapping("/places/{placeId}/similar")
 	public String getSimilarPlaces(@PathVariable("placeId") int placeId,
-																 @RequestParam(required = false) Integer start,
-																 @RequestParam(required = false) Integer end) {
-		return placesService.getSimilarPlaces(placeId, start, end);
+																 @RequestParam(required = false) Integer populationStart,
+																 @RequestParam(required = false) Integer populationEnd) {
+		return placesService.getSimilarPlaces(placeId, populationStart, populationEnd);
 	}
 
 	@GetMapping("/places/{name}")
