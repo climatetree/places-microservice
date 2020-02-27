@@ -61,7 +61,7 @@ public class PlacesControllerTest {
 
 		when(placeService.getSimilarPlaces(anyInt(), anyInt(), anyInt())).thenReturn(geoJsonString);
 
-		mvc.perform(get("/api/places/1/similar?start=90&end=100").contentType(APPLICATION_JSON)).andExpect(status().isOk())
+		mvc.perform(get("/api/places/1/similar?populationStart=90&populationEnd=100").contentType(APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(jsonPath("$", is(geoJsonString)));
 	}
 }
