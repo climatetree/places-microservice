@@ -41,25 +41,18 @@ public class PlacesControllerTest {
 
 	@MockBean
 	private PlacesService placeService;
-	
+
 	@MockBean
 	private NamesService nameService;
 
 	@Test
 	public void getPlacesByName() throws Exception {
-		Set<PlaceDTO> places = new HashSet<>();
-		PlaceDTO dto1 = new PlaceDTO(1, "Manchester", null, 220002002, 23123.22, 2131.323, 122.0, 98.33, 34.3);
-		PlaceDTO dto2 = new PlaceDTO(2, "Manila", null, 220002002, 23123.22, 2131.323, 122.0, 98.33, 34.3);
+		String geoJsonString = "Test Dummy Geo Json String";
 
-		places.add(dto1);
-		places.add(dto2);
+		when(nameService.getPlacesBySearchTerm(any(String.class))).thenReturn(geoJsonString);
 
-		when(nameService.getPlacesByName(any(String.class))).thenReturn(places);
-
-		List<PlaceDTO> placesList = new ArrayList<>(places);
-		mvc.perform(get("/api/names/Man").contentType(APPLICATION_JSON)).andExpect(status().isOk())
-				.andExpect(jsonPath("$", hasSize(2))).andExpect(jsonPath("$[0].name", is(placesList.get(0).getName())))
-				.andExpect(jsonPath("$[1].name", is(placesList.get(1).getName())));
+		mvc.perform(get("/api/places/Man").contentType(APPLICATION_JSON)).andExpect(status().isOk())
+				.andExpect(jsonPath("$", is(geoJsonString)));
 	}
 
 	@Test

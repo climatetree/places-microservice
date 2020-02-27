@@ -46,12 +46,13 @@ public class NameRepositoryTest {
 		assertEquals(name.getName(), n1.getName());
 	}
 
-	@Test
-	public void getPlacesByNameTest() {
+//	@Test
+//	public void getPlacesByNameTest() {
+//
+//		List<Name> names = new ArrayList<>();
+//		repository.getPlacesByName("MAN").forEach(names::add);
+//
+//		assertThat(names, hasSize(2));
+//	}
 
-		List<Name> names = new ArrayList<>();
-		repository.getPlacesByName("MAN").forEach(names::add);
-
-		assertThat(names, hasSize(2));
-	}
 }
