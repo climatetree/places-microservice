@@ -1,25 +1,31 @@
 package com.climatetree.places.service;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import com.climatetree.places.dto.PlaceDTO;
 import com.climatetree.places.dao.PlaceRepository;
 import com.climatetree.places.model.PlaceInfo;
-import com.climatetree.places.utils.Mapper;
 
 @Service
+@PropertySource("classpath:constants.properties")
 public class PlacesService {
 
 	@Autowired
 	PlaceRepository placesRepo;
 
-	private final int defaultStart = 95;
-	private final int defaultEnd = 150;
+	@Value("${default_population_start}")
+	private int defaultStart;
+
+  @Value("${default_population_end}")
+	private int defaultEnd;
 
 
 	public PlaceInfo findPlaceById(int placeId) {
@@ -59,7 +65,7 @@ public class PlacesService {
 
 			return this.placesRepo.getSimilarPlaces(popStart, popEnd, typeId);
 		}
-		return "";
+		return StringUtils.EMPTY;
 	}
 
 }
