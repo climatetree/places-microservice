@@ -4,6 +4,7 @@ package com.climatetree.places.controller;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.BDDMockito.given;
@@ -93,5 +94,13 @@ public class PlacesControllerTest {
 						.andExpect(jsonPath("$", is(geoJsonString)));
 	}
 
+	@Test
+  public void getNearestPlaceTest() throws Exception {
+    String geoJsonString = "Test Dummy Geo Json String";
 
+    when(placeService.getNearbyPlace(anyDouble(),anyDouble())).thenReturn(geoJsonString);
+
+    mvc.perform(get("/api/places/nearest?latitude=47&longitude=-122").contentType(APPLICATION_JSON))
+        .andExpect(status().isOk()).andExpect(jsonPath("$", is(geoJsonString)));
+  }
 }

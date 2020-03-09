@@ -79,4 +79,14 @@ public class PlacesService {
     return StringUtils.EMPTY;
   }
 
+  /**
+   * Returns the nearest place to the given latitude and longitude by elucidaian distance
+   * @param latitude the latitude to search near, range [-90,90]
+   * @param longitude the longitude to search near, range [-180,80]
+   * @return geoJSON string representing the found place
+   */
+	public String getNearbyPlace(double latitude, double longitude) {
+	  return placesRepo.getNearestPlace(latitude, longitude);
+  }
+
 }

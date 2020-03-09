@@ -77,4 +77,13 @@ public class PlacesServiceTest {
 		assertThat(places).isEqualTo("");
 	}
 
+	@Test
+  public void getNearestTest() {
+	  when(repo.getNearestPlace(anyDouble(), anyDouble())).thenReturn(this.json_object);
+
+	  String result = service.getNearbyPlace(0,0);
+
+	  assertThat(result).isEqualTo("Json Object");
+  }
+
 }

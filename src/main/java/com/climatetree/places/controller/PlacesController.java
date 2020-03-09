@@ -46,5 +46,10 @@ public class PlacesController {
 	public String getPlacesByName(@PathVariable("name") String name) {
 		return namesService.getPlacesBySearchTerm(name);
 	}
+
+	@GetMapping("/places/nearest")
+  public String getNearestPlace(@RequestParam double latitude, @RequestParam double longitude){
+	  return placesService.getNearbyPlace(latitude, longitude);
+  }
 	
 }
