@@ -5,6 +5,7 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -59,9 +60,38 @@ public class PlacesControllerTest {
 	public void getSimilarPlacesTest() throws Exception {
 		String geoJsonString = "Test Dummy Geo Json String";
 
-		when(placeService.getSimilarPlaces(anyInt(), anyInt(), anyInt())).thenReturn(geoJsonString);
+		when(placeService.getSimilarPlaces(anyInt(), anyInt(), anyInt(), isNull(), isNull(), isNull(),
+						isNull(), isNull(), isNull())).thenReturn(geoJsonString);
 
-		mvc.perform(get("/api/places/1/similar?populationStart=90&populationEnd=100").contentType(APPLICATION_JSON)).andExpect(status().isOk())
-				.andExpect(jsonPath("$", is(geoJsonString)));
+		mvc.perform(get("/api/places/1/similar?populationStart=90&populationEnd=100")
+						.contentType(APPLICATION_JSON)).andExpect(status().isOk())
+						.andExpect(jsonPath("$", is(geoJsonString)));
 	}
+
+	@Test
+	public void getSimilarPlacesTest2() throws Exception {
+		String geoJsonString = "Test Dummy Geo Json String";
+
+		when(placeService.getSimilarPlaces(anyInt(), anyInt(), anyInt(), anyInt(), anyInt(), anyInt(),
+						anyInt(), anyInt(), anyInt())).thenReturn(geoJsonString);
+
+		mvc.perform(get("/api/places/1/similar?populationStart=90&populationEnd=100&carbonStart=88&carbonEnd=112&" +
+						"perCapCarbonStart=86&perCapCarbonEnd=114&popDensityStart=84&popDensityEnd=116")
+						.contentType(APPLICATION_JSON)).andExpect(status().isOk())
+						.andExpect(jsonPath("$", is(geoJsonString)));
+	}
+
+	@Test
+	public void getSimilarPlacesTest3() throws Exception {
+		String geoJsonString = "Test Dummy Geo Json String";
+
+		when(placeService.getSimilarPlaces(anyInt(), isNull(), isNull(), isNull(), isNull(), isNull(),
+						isNull(), isNull(), isNull())).thenReturn(geoJsonString);
+
+		mvc.perform(get("/api/places/1/similar")
+						.contentType(APPLICATION_JSON)).andExpect(status().isOk())
+						.andExpect(jsonPath("$", is(geoJsonString)));
+	}
+
+
 }

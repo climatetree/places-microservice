@@ -31,8 +31,15 @@ public class PlacesController {
 	@GetMapping("/places/{placeId}/similar")
 	public String getSimilarPlaces(@PathVariable("placeId") int placeId,
 																 @RequestParam(required = false) Integer populationStart,
-																 @RequestParam(required = false) Integer populationEnd) {
-		return placesService.getSimilarPlaces(placeId, populationStart, populationEnd);
+																 @RequestParam(required = false) Integer populationEnd,
+																 @RequestParam(required = false) Integer carbonStart,
+																 @RequestParam(required = false) Integer carbonEnd,
+																 @RequestParam(required = false) Integer perCapCarbonStart,
+																 @RequestParam(required = false) Integer perCapCarbonEnd,
+																 @RequestParam(required = false) Integer popDensityStart,
+																 @RequestParam(required = false) Integer popDensityEnd) {
+		return placesService.getSimilarPlaces(placeId, populationStart, populationEnd, carbonStart,
+						carbonEnd, perCapCarbonStart, perCapCarbonEnd, popDensityStart, popDensityEnd);
 	}
 
 	@GetMapping("/places/{name}")

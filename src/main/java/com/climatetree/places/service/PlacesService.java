@@ -51,21 +51,32 @@ public class PlacesService {
 	 *                   150)
 	 * @return a list of PlaceDTO objects that are "similar" to the given PlaceDTO
 	 */
-	public String getSimilarPlaces(int placeId, Integer percentStart, Integer percentEnd) {
-		Optional<PlaceInfo> placeOpt = placesRepo.findById(placeId);
+	public String getSimilarPlaces(int placeId, Integer percentStart, Integer percentEnd,
+                                 Integer carbonStart, Integer carbonEnd, Integer perCapCarbonStart,
+                                 Integer perCapCarbonEnd, Integer popDensityStart,
+                                 Integer popDensityEnd) {
+    Optional<PlaceInfo> placeOpt = placesRepo.findById(placeId);
 
-		int start = (percentStart != null) ? percentStart : defaultStart;
-		int end = (percentEnd != null) ? percentEnd : defaultEnd;
+    int start = (percentStart != null) ? percentStart : defaultStart;
+    int end = (percentEnd != null) ? percentEnd : defaultEnd;
 
-		if (placeOpt.isPresent()) {
-			PlaceInfo place = placeOpt.get();
-			double popStart = place.getPopulation() * ((double) start / 100);
-			double popEnd = place.getPopulation() * ((double) end / 100);
-			int typeId = place.getType().getTypeId();
+    if (placeOpt.isPresent()) {
+      PlaceInfo place = placeOpt.get();
+      double popStart = place.getPopulation() * ((double) start / 100);
+      double popEnd = place.getPopulation() * ((double) end / 100);
 
-			return this.placesRepo.getSimilarPlaces(popStart, popEnd, typeId);
-		}
-		return StringUtils.EMPTY;
-	}
+      double cStart = (carbonStart != null) ? place.getCarbon() * ( (double) carbonStart/ 100) : -1;
+      double cEnd = (carbonEnd != null) ? place.getCarbon() * ((double) carbonEnd / 100) : -1;
+      double pcStart = (perCapCarbonStart != null) ? place.getPercapcarb() * ((double) perCapCarbonStart / 100) : -1;
+      double pcEnd = (perCapCarbonEnd != null) ? place.getPercapcarb() * ((double) perCapCarbonEnd / 100) : -1;
+      double pdStart = (popDensityStart != null) ? place.getPopdensity() * ((double) popDensityStart / 100) : -1;
+      double pdEnd = (popDensityEnd != null) ? place.getPopdensity() * ((double) popDensityEnd / 100) : -1;
+
+      int typeId = place.getType().getTypeId();
+
+      return this.placesRepo.getSimilarPlaces(popStart, popEnd, typeId, cStart, cEnd, pcStart, pcEnd, pdStart, pdEnd);
+    }
+    return StringUtils.EMPTY;
+  }
 
 }
