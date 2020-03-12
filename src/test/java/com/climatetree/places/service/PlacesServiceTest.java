@@ -53,25 +53,54 @@ public class PlacesServiceTest {
 		}
 
 	@Test
-	public void getSimilarPlacesTest1() {
+	public void getSimilarPlacesTestDefault() {
 		// When we call getSimilarPlaces on our repo
-		when(repo.getSimilarPlaces(anyDouble(), anyDouble(), anyInt())).thenReturn(json_object);
+		when(repo.getSimilarPlaces(anyInt(), anyDouble(), anyDouble(), anyDouble(), anyDouble(),
+						anyDouble(), anyDouble(), anyDouble(), anyDouble())).thenReturn(json_object);
 
-		String places = service.getSimilarPlaces(0, 95, 150);
+		String places = service.getSimilarPlacesDefault(0);
 
 		// Assert that our function returned the right information
-		assertThat(places).isEqualTo("Json Object");
+		assertThat(places).isEqualTo(json_object);
 	}
 
 	@Test
-	public void getSimilarPlacesTest2() {
+	public void getSimilarPlacesTestAdvanced1() {
 		// When we call getSimilarPlaces on our repo
-		when(repo.findById(anyInt())).thenReturn(Optional.empty());
+		when(repo.getSimilarPlaces(anyInt(), anyDouble(), anyDouble(), anyDouble(), anyDouble(),
+						anyDouble(), anyDouble(), anyDouble(), anyDouble())).thenReturn(json_object);
 
-		String places = service.getSimilarPlaces(0, 95, 150);
+		String places = service.getSimilarPlacesAdvanced(0, 95, 150,
+						90, 110, 70, 130, 50, 150);
 
 		// Assert that our function returned the right information
-		assertThat(places).isEqualTo("");
+		assertThat(places).isEqualTo(json_object);
+	}
+
+	@Test
+	public void getSimilarPlacesTestAdvanced2() {
+		// When we call getSimilarPlaces on our repo
+		when(repo.getSimilarPlaces(anyInt(), anyDouble(), anyDouble(), anyDouble(), anyDouble(),
+						anyDouble(), anyDouble(), anyDouble(), anyDouble())).thenReturn(json_object);
+
+		String places = service.getSimilarPlacesAdvanced(0, 95, 150,
+						null, null, null, null, null, null);
+
+		// Assert that our function returned the right information
+		assertThat(places).isEqualTo(json_object);
+	}
+
+	@Test
+	public void getSimilarPlacesTestAdvanced3() {
+		// When we call getSimilarPlaces on our repo
+		when(repo.getSimilarPlaces(anyInt(), anyDouble(), anyDouble(), anyDouble(), anyDouble(),
+						anyDouble(), anyDouble(), anyDouble(), anyDouble())).thenReturn(json_object);
+
+		String places = service.getSimilarPlacesAdvanced(0, null, null,
+						null, null, null, null, null, null);
+
+		// Assert that our function returned the right information
+		assertThat(places).isEqualTo(json_object);
 	}
 
 	@Test
@@ -80,7 +109,7 @@ public class PlacesServiceTest {
 
 	  String result = service.getNearbyPlace(0,0);
 
-	  assertThat(result).isEqualTo("Json Object");
+	  assertThat(result).isEqualTo(json_object);
   }
 
 }
