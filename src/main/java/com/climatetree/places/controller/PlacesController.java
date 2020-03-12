@@ -29,18 +29,23 @@ public class PlacesController {
 	NamesService namesService;
 
 	@GetMapping("/places/{placeId}/similar")
-	public String getSimilarPlaces(@PathVariable("placeId") int placeId,
-																 @RequestParam(required = false) Integer populationStart,
-																 @RequestParam(required = false) Integer populationEnd,
-																 @RequestParam(required = false) Integer carbonStart,
-																 @RequestParam(required = false) Integer carbonEnd,
-																 @RequestParam(required = false) Integer perCapCarbonStart,
-																 @RequestParam(required = false) Integer perCapCarbonEnd,
-																 @RequestParam(required = false) Integer popDensityStart,
-																 @RequestParam(required = false) Integer popDensityEnd) {
-		return placesService.getSimilarPlaces(placeId, populationStart, populationEnd, carbonStart,
-						carbonEnd, perCapCarbonStart, perCapCarbonEnd, popDensityStart, popDensityEnd);
+	public String getSimilarPlaces(@PathVariable("placeId") int placeId) {
+		return placesService.getSimilarPlacesDefault(placeId);
 	}
+
+  @GetMapping("/places/{placeId}/similar/advanced")
+  public String getSimilarPlaces(@PathVariable("placeId") int placeId,
+                                 @RequestParam(required = false) Integer populationStart,
+                                 @RequestParam(required = false) Integer populationEnd,
+                                 @RequestParam(required = false) Integer carbonStart,
+                                 @RequestParam(required = false) Integer carbonEnd,
+                                 @RequestParam(required = false) Integer perCapCarbonStart,
+                                 @RequestParam(required = false) Integer perCapCarbonEnd,
+                                 @RequestParam(required = false) Integer popDensityStart,
+                                 @RequestParam(required = false) Integer popDensityEnd) {
+    return placesService.getSimilarPlacesAdvanced(placeId, populationStart, populationEnd, carbonStart,
+            carbonEnd, perCapCarbonStart, perCapCarbonEnd, popDensityStart, popDensityEnd);
+  }
 
 	@GetMapping("/places/{name}")
 	public String getPlacesByName(@PathVariable("name") String name) {

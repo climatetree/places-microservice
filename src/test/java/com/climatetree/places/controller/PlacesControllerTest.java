@@ -61,10 +61,9 @@ public class PlacesControllerTest {
 	public void getSimilarPlacesTest() throws Exception {
 		String geoJsonString = "Test Dummy Geo Json String";
 
-		when(placeService.getSimilarPlaces(anyInt(), anyInt(), anyInt(), isNull(), isNull(), isNull(),
-						isNull(), isNull(), isNull())).thenReturn(geoJsonString);
+		when(placeService.getSimilarPlacesDefault(anyInt())).thenReturn(geoJsonString);
 
-		mvc.perform(get("/api/places/1/similar?populationStart=90&populationEnd=100")
+		mvc.perform(get("/api/places/1/similar")
 						.contentType(APPLICATION_JSON)).andExpect(status().isOk())
 						.andExpect(jsonPath("$", is(geoJsonString)));
 	}
@@ -73,10 +72,10 @@ public class PlacesControllerTest {
 	public void getSimilarPlacesTest2() throws Exception {
 		String geoJsonString = "Test Dummy Geo Json String";
 
-		when(placeService.getSimilarPlaces(anyInt(), anyInt(), anyInt(), anyInt(), anyInt(), anyInt(),
+		when(placeService.getSimilarPlacesAdvanced(anyInt(), anyInt(), anyInt(), anyInt(), anyInt(), anyInt(),
 						anyInt(), anyInt(), anyInt())).thenReturn(geoJsonString);
 
-		mvc.perform(get("/api/places/1/similar?populationStart=90&populationEnd=100&carbonStart=88&carbonEnd=112&" +
+		mvc.perform(get("/api/places/1/similar/advanced?populationStart=90&populationEnd=100&carbonStart=88&carbonEnd=112&" +
 						"perCapCarbonStart=86&perCapCarbonEnd=114&popDensityStart=84&popDensityEnd=116")
 						.contentType(APPLICATION_JSON)).andExpect(status().isOk())
 						.andExpect(jsonPath("$", is(geoJsonString)));
@@ -86,10 +85,10 @@ public class PlacesControllerTest {
 	public void getSimilarPlacesTest3() throws Exception {
 		String geoJsonString = "Test Dummy Geo Json String";
 
-		when(placeService.getSimilarPlaces(anyInt(), isNull(), isNull(), isNull(), isNull(), isNull(),
+		when(placeService.getSimilarPlacesAdvanced(anyInt(), isNull(), isNull(), isNull(), isNull(), isNull(),
 						isNull(), isNull(), isNull())).thenReturn(geoJsonString);
 
-		mvc.perform(get("/api/places/1/similar")
+		mvc.perform(get("/api/places/1/similar/advanced")
 						.contentType(APPLICATION_JSON)).andExpect(status().isOk())
 						.andExpect(jsonPath("$", is(geoJsonString)));
 	}
