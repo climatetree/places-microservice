@@ -53,7 +53,7 @@ public class PlacesControllerTest {
 
 		when(nameService.getPlacesBySearchTerm(any(String.class))).thenReturn(geoJsonString);
 
-		mvc.perform(get("/api/places/v1/Man").contentType(APPLICATION_JSON)).andExpect(status().isOk())
+		mvc.perform(get("/api/v1/places/Man").contentType(APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(jsonPath("$", is(geoJsonString)));
 	}
 
@@ -63,7 +63,7 @@ public class PlacesControllerTest {
 
 		when(placeService.getSimilarPlacesDefault(anyInt())).thenReturn(geoJsonString);
 
-		mvc.perform(get("/api/places/v1/1/similar")
+		mvc.perform(get("/api/v1/places/1/similar")
 						.contentType(APPLICATION_JSON)).andExpect(status().isOk())
 						.andExpect(jsonPath("$", is(geoJsonString)));
 	}
@@ -75,7 +75,7 @@ public class PlacesControllerTest {
 		when(placeService.getSimilarPlacesAdvanced(anyInt(), anyInt(), anyInt(), anyInt(), anyInt(), anyInt(),
 						anyInt(), anyInt(), anyInt())).thenReturn(geoJsonString);
 
-		mvc.perform(get("/api/places/v1/1/similar/advanced?populationStart=90&populationEnd=100&carbonStart=88&carbonEnd=112&" +
+		mvc.perform(get("/api/v1/places/1/similar/advanced?populationStart=90&populationEnd=100&carbonStart=88&carbonEnd=112&" +
 						"perCapCarbonStart=86&perCapCarbonEnd=114&popDensityStart=84&popDensityEnd=116")
 						.contentType(APPLICATION_JSON)).andExpect(status().isOk())
 						.andExpect(jsonPath("$", is(geoJsonString)));
@@ -88,7 +88,7 @@ public class PlacesControllerTest {
 		when(placeService.getSimilarPlacesAdvanced(anyInt(), isNull(), isNull(), isNull(), isNull(), isNull(),
 						isNull(), isNull(), isNull())).thenReturn(geoJsonString);
 
-		mvc.perform(get("/api/places/v1/1/similar/advanced")
+		mvc.perform(get("/api/v1/places/1/similar/advanced")
 						.contentType(APPLICATION_JSON)).andExpect(status().isOk())
 						.andExpect(jsonPath("$", is(geoJsonString)));
 	}
@@ -99,7 +99,7 @@ public class PlacesControllerTest {
 
     when(placeService.getNearbyPlace(anyDouble(),anyDouble())).thenReturn(geoJsonString);
 
-    mvc.perform(get("/api/places/v1/nearest?latitude=47&longitude=-122").contentType(APPLICATION_JSON))
+    mvc.perform(get("/api/v1/places/nearest?latitude=47&longitude=-122").contentType(APPLICATION_JSON))
         .andExpect(status().isOk()).andExpect(jsonPath("$", is(geoJsonString)));
   }
 }
