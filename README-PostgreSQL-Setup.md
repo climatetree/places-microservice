@@ -10,3 +10,5 @@ To locally create the database schema and populate tables, follow these steps:
   "psql -U <username> -d <dbname> -a -f ./src/main/resources/6510-full-db.sql"
   
   Tutorial for mac: https://www.youtube.com/watch?v=5AOkxqFaYEE
+  
+  
