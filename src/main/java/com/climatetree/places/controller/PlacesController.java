@@ -28,12 +28,12 @@ public class PlacesController {
 	@Autowired
 	NamesService namesService;
 
-	@GetMapping("/places/v1/{placeId}/similar")
+	@GetMapping("/v1/places/{placeId}/similar")
 	public String getSimilarPlaces(@PathVariable("placeId") int placeId) {
 		return placesService.getSimilarPlacesDefault(placeId);
 	}
 
-  @GetMapping("/places/v1/{placeId}/similar/advanced")
+  @GetMapping("/v1/places/{placeId}/similar/advanced")
   public String getSimilarPlaces(@PathVariable("placeId") int placeId,
                                  @RequestParam(required = false) Integer populationStart,
                                  @RequestParam(required = false) Integer populationEnd,
@@ -47,12 +47,12 @@ public class PlacesController {
             carbonEnd, perCapCarbonStart, perCapCarbonEnd, popDensityStart, popDensityEnd);
   }
 
-	@GetMapping("/places/v1/{name}")
+	@GetMapping("/v1/places/{name}")
 	public String getPlacesByName(@PathVariable("name") String name) {
 		return namesService.getPlacesBySearchTerm(name);
 	}
 
-	@GetMapping("/places/v1/nearest")
+	@GetMapping("/v1/places/nearest")
   public String getNearestPlace(@RequestParam double latitude, @RequestParam double longitude){
 	  return placesService.getNearbyPlace(latitude, longitude);
   }
