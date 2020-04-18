@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Mirrors the Type table from the database.
+ */
 @Entity
 @Table(name = "\"TYPE\"")
 public class Type implements Serializable {

@@ -14,7 +14,6 @@ public interface PlaceRepository extends CrudRepository<PlaceInfo, Integer> {
 
 
 	/**
-	 * Queries the database for PlaceInfo entries that are within the following range:
 	 * Uses a stored database function to query the database and return a geoJson object where each
 	 * Place in the list fits the following criteria:
 	 *  - TypeId = TypeId
