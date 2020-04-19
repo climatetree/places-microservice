@@ -19,7 +19,7 @@ import com.climatetree.places.service.PlacesService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://climatetree-api-gateway.azurewebsites.net")
 public class PlacesController {
 
 	@Autowired
