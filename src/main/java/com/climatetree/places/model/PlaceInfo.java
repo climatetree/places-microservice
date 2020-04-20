@@ -15,6 +15,11 @@ import javax.persistence.Table;
 import com.climatetree.places.dto.PlaceDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+/**
+ * Defines the PlaceInfo object which is based off the PlaceInfo table in the database. This class
+ * definition does NOT contain all fields in teh PlaceInfo db table. It only contains a small
+ * subset of the data.
+ */
 @Entity
 @Table(name = "\"PLACE_INFO\"")
 public class PlaceInfo implements Serializable {

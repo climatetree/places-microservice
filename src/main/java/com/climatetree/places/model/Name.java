@@ -15,6 +15,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+/**
+ * Mirrors the Name table from the database.
+ */
 @Entity
 @Table(name = "\"NAME\"")
 public class Name implements Serializable {

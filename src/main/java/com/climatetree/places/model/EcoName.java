@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Mirrors the Eco Name table from the database.
+ */
 @Entity
 @Table(name="\"ECO_NAME\"")
 public class EcoName implements Serializable {
