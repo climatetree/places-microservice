@@ -27,12 +27,22 @@ public class PlacesService {
   @Value("${default_population_end}")
 	private int defaultEnd;
 
-
+	/**
+	 * Find a single Place from the database with the provided placeId.
+	 *
+	 * @param placeId place Id
+	 * @return PlaceInfo object
+	 */
 	public PlaceInfo findPlaceById(int placeId) {
 		Optional<PlaceInfo> placesOp = placesRepo.findById(placeId);
 		return placesOp.isPresent() ? placesOp.get() : null;
 	}
 
+	/**
+	 * Find all Place from the database.
+	 *
+	 * @return List of PlaceInfo objects
+	 */
 	public List<PlaceInfo> findAllPlaces() {
 		List<PlaceInfo> places = new ArrayList<>();
 		placesRepo.findAll().forEach(p -> places.add(p));
@@ -41,7 +51,7 @@ public class PlacesService {
 
 	/**
 	 * Returns places that adhere to all of the following constraints when compared
-	 * to the given place: 1. Between percentStart and percentEnd of the given place's population 2.
+	 * to the given place: 1. Between 95% and 150% of the given place's population 2.
 	 * Is the same type (nation, state, county, or urban extent) as the given place.
 	 * 
 	 * @param placeId the placeId of a Place
@@ -64,11 +74,15 @@ public class PlacesService {
 
 	/**
 	 * Returns places that adhere to all of the following constraints when compared
-	 * to the given place: 1. Between percentStart and percentEnd of the given place's population 2.
-	 * Is the same type (nation, state, county, or urban extent) as the given place.
+	 * to the given place:
+	 * 		1. Between percentStart and percentEnd of the given place's population
+	 * 		2. Between carbonStart and carbonEnd of the given place's carbon
+	 * 		3. Between perCapCarbonStart and perCapCarbonEnd of the given places per capita carbon.
+	 * 		4. Between popDensityStart and popDensityEnd of the given places population density.
+	 * 		5. Is the same type (nation, state, county, or urban extent) as the given place.
 	 *
 	 * @param placeId the placeId of a Place
-	 * @return a list of PlaceDTO objects that are "similar" to the given PlaceDTO
+	 * @return a GeoJson string listing all matching places
 	 */
 	public String getSimilarPlacesAdvanced(int placeId, Integer popStart, Integer popEnd,
 																 Integer carbonStart, Integer carbonEnd, Integer perCapCarbonStart,

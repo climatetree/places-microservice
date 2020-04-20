@@ -10,6 +10,13 @@ import com.climatetree.places.model.Name;
 @Repository
 public interface NameRepository extends CrudRepository<Name, Integer> {
 
+	/**
+	 * Calls a stored function in the database to return a list of GeoJson objects that contain
+	 * the provided searchTerm.
+	 *
+	 * @param upperName Search term
+	 * @return GeoJson list of places
+	 */
 	@Query(value = "SELECT public.\"getPlacesBySearchTerm\"(\n" +
 			"\t:upperName\n" +
 			")", nativeQuery = true)

@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Mirrors the wwfrealm2 table from the database.
+ */
 @Entity
 @Table(name = "\"WWF_REALM2\"")
 public class WwfRealm2 implements Serializable {

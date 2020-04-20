@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Mirrors the wwfmhtnam table from the database.
+ */
 @Entity
 @Table(name = "\"WWF_MHTNAM\"")
 public class WwfMhtnam implements Serializable {

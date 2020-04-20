@@ -1,5 +1,8 @@
 package com.climatetree.places.dto;
 
+/**
+ * Defines a Places data transfer object.
+ */
 public class PlaceDTO {
 
 	private int placeId;
